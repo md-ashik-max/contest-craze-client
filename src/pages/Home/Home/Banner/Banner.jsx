@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import 'animate.css';
 
 
 const Banner = () => {
@@ -13,21 +14,21 @@ const Banner = () => {
             des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
         },
         {
-            img: 'https://i.ibb.co/xSz4YXM/vietnam-spot.jpg',
+            img: 'https://i.ibb.co/LvHv2WH/slider-img2.jpg',
             author: 'LUNDEV',
             title: 'DESIGN SLIDER',
             topic: 'ANIMAL',
             des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
         },
         {
-            img: 'https://i.ibb.co/7pv1jW5/gulshan.jpg',
+            img: 'https://i.ibb.co/HHkGRsb/slider-img3.jpg',
             author: 'LUNDEV',
             title: 'DESIGN SLIDER',
             topic: 'ANIMAL',
             des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
         },
         {
-            img: 'https://i.ibb.co/PGZZ9Ld/woman-feeding-colorful-fish-pond-tirta-gangga-water-palace-bali-indonesia.jpg',
+            img: 'https://i.ibb.co/h9mbfvY/slider-img4.jpg',
             author: 'LUNDEV',
             title: 'DESIGN SLIDER',
             topic: 'ANIMAL',
@@ -68,11 +69,11 @@ const Banner = () => {
                         <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
                         <div className="w-full h-full bg-slate-500">
                             <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white max-w-4xl">
-                                <div className="font-bold tracking-wide">{item.author}</div>
-                                <div className="text-5xl font-bold leading-tight">{item.title}</div>
-                                <div className="text-5xl font-bold text-[#E64398]">{item.topic}</div>
+                                <div className="font-bold tracking-wide animate__animated animate__slideInUp">{item.author}</div>
+                                <div className="text-5xl font-bold leading-tight animate__animated animate__slideInUp">{item.title}</div>
+                                <div className="text-5xl font-bold text-[#E64398] animate__animated animate__slideInUp">{item.topic}</div>
                                 <div className="mt-4">{item.des}</div>
-                                <div className="grid grid-cols-2 gap-4 mt-6">
+                                <div className="grid grid-cols-2 gap-4 mt-6 animate__animated animate__backInDown">
                                     <button onClick={prevSlide} className="btn bg-[#0677A1] hover:text-[#0677A1] font-bold hover:bg-white text-white">
                                         SEE MORE
                                     </button>
