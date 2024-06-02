@@ -1,0 +1,74 @@
+[
+    {
+      "id": 1,
+      "name": "Photography Contest",
+      "image": "https://example.com/images/photo_contest.jpg",
+      "description": "Capture the best moments and showcase your photography skills.",
+      "category": "Photography",
+      "status": "Ongoing",
+      "startDate": "2024-06-01",
+      "endDate": "2024-06-30",
+      "prizes": ["Camera", "Tripod", "Photography Book"],
+      "entryPrice": 20
+    },
+    {
+      "id": 2,
+      "name": "Art Competition",
+      "image": "https://example.com/images/art_competition.jpg",
+      "description": "Show your artistic talent and win fabulous prizes.",
+      "category": "Art",
+      "status": "Upcoming",
+      "startDate": "2024-07-01",
+      "endDate": "2024-07-31",
+      "prizes": ["Art Supplies", "Exhibition Opportunity", "Cash Prize"],
+      "entryPrice": 15
+    },
+    {
+      "id": 3,
+      "name": "Writing Contest",
+      "image": "https://example.com/images/writing_contest.jpg",
+      "description": "Pen down your thoughts and stand a chance to get published.",
+      "category": "Writing",
+      "status": "Ongoing",
+      "startDate": "2024-06-10",
+      "endDate": "2024-06-20",
+      "prizes": ["Publishing Contract", "E-Reader", "Gift Vouchers"],
+      "entryPrice": 10
+    },
+    {
+      "id": 4,
+      "name": "Music Talent Hunt",
+      "image": "https://example.com/images/music_talent_hunt.jpg",
+      "description": "Showcase your musical talent and win exciting rewards.",
+      "category": "Music",
+      "status": "Closed",
+      "startDate": "2024-05-01",
+      "endDate": "2024-05-31",
+      "prizes": ["Recording Contract", "Musical Instruments", "Cash Prize"],
+      "entryPrice": 25
+    },
+    {
+      "id": 5,
+      "name": "Dance Competition",
+      "image": "https://example.com/images/dance_competition.jpg",
+      "description": "Put on your dancing shoes and impress the judges.",
+      "category": "Dance",
+      "status": "Ongoing",
+      "startDate": "2024-06-05",
+      "endDate": "2024-06-25",
+      "prizes": ["Dance Workshop", "Trophy", "Gift Cards"],
+      "entryPrice": 30
+    },
+    {
+      "id": 6,
+      "name": "Cooking Contest",
+      "image": "https://example.com/images/cooking_contest.jpg",
+      "description": "Show off your culinary skills and win fantastic prizes.",
+      "category": "Cooking",
+      "status": "Upcoming",
+      "startDate": "2024-08-01",
+      "endDate": "2024-08-31",
+      "prizes": ["Cooking Appliances", "Recipe Book", "Cash Prize"],
+      "entryPrice": 20
+    }
+  ]
