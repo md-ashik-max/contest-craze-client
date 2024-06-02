@@ -8,7 +8,7 @@ const Footer = () => {
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <aside>
                     <img className="w-32 h-32" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
-                    <h3 className="text-4xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
+                    <h3 className="text-4xl font-black font-roboto">Contest <span className="text-[#0677A1]">Craze</span></h3>
                     <div className="flex gap-4 text-xl">
                         <FaFacebook></FaFacebook>
                         <FaInstagram></FaInstagram>
@@ -37,14 +37,14 @@ const Footer = () => {
                         </label>
                         <div className="join">
                             <input type="text" placeholder="username@site.com" className="input input-bordered join-item" />
-                            <button className="btn bg-[#E64398] text-white hover:text-black join-item">Subscribe</button>
+                            <button className="btn bg-[#0677A1] text-white hover:text-black join-item">Subscribe</button>
                         </div>
                     </fieldset>
                 </form>
 
             </footer>
-            <div className="p-4 bg-[#E64398] text-center font-bold">
-                <p className="text-black opacity-100">Copyright © 2024 - All right reserved by Contest Craze</p>
+            <div className="p-4 bg-[#0677A1] text-center font-bold">
+                <p className="text-white opacity-100">Copyright © 2024 - All right reserved by Contest Craze</p>
             </div>
         </div>
     );

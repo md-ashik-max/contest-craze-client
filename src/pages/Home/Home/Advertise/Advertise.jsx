@@ -2,7 +2,7 @@
 
 const Advertise = ({ contestWinner, contestParticipationCount, totalContestWinners }) => {
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/QCtXf2n/advertise-poster.jpg)' }}>
+        <div className="hero min-h-screen my-28" style={{ backgroundImage: 'url(https://i.ibb.co/QCtXf2n/advertise-poster.jpg)' }}>
            <div className="contest-winner-section grid grid-cols-1 md:grid-cols-2 gap-8 rounded-lg overflow-hidden shadow-md">
       <div className="contest-ad bg-gradient-to-r from-purple-500 to-indigo-500 relative flex flex-col items-center justify-center p-8">
         <h2 className="text-3xl font-bold text-white mb-4">Join the Challenge!</h2>

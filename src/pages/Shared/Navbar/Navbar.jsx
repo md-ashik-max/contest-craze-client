@@ -5,11 +5,11 @@ const Navbar = () => {
 
     const links = <>
         <li><NavLink to='/' style={({ isActive }) => ({
-            color: isActive ? '#E64398' : 'black',
+            color: isActive ? '#0677A1' : 'black',
             backgroundColor: 'transparent',
         })}>Home</NavLink></li>
         <li><NavLink to='/allContest' style={({ isActive }) => ({
-            color: isActive ? '#E64398' : 'black',
+            color: isActive ? '#0677A1' : 'black',
             backgroundColor: 'transparent',
         })}>All Contest</NavLink></li>
 
@@ -27,7 +27,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="flex items-center">
-                        <img className="w-32 h-32" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
+                        <img className="w-24 h-24" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
                         <h3 className="text-4xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link to='/signIn'>
-                        <button className="btn text-lg font-bold text-[#E64398] bg-transparent border-2 border-[#E64398] hover:text-white hover:bg-[#E64398]">Sign In</button>
+                        <button className="btn text-lg font-bold text-[#0677A1] bg-transparent border-2 border-[#0677A1] hover:text-white hover:bg-[#0677A1]">Sign In</button>
                     </Link>
                 </div>
         </div>
