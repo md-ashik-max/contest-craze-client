@@ -3,13 +3,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import 'swiper/css';
 import 'swiper/css/pagination';
 
 import 'swiper/css';
 // import { Pagination } from 'swiper/modules';
 import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 
@@ -42,7 +42,6 @@ const PopularContest = () => {
                 <div className="flex flex-col justify-center items-center space-y-2">
                     <img className="w-12" src="https://i.ibb.co/2sFHBqw/line-thin.png" alt="" />
                     <img className="w-16" src="https://i.ibb.co/2sFHBqw/line-thin.png" alt="" />
-                    {/* <img src="https://i.ibb.co/d0rCsPg/line-bold.png" alt="" /> */}
                 </div>
                 <p className="mt-3">Join our exciting contest now! Showcase your creativity and win amazing prizes. <br /> Do not miss this chance to shine. Enter today and let your talents be recognized!</p>
 
@@ -68,19 +67,19 @@ const PopularContest = () => {
                     pagination={{
                         clickable: true,
                     }}
-                    // modules={[Pagination]}
-                    // className="mySwiper"
+                // modules={[Pagination]}
+                // className="mySwiper"
                 >
                     {
                         contests.map(contest => <SwiperSlide key={contest.id}>
                             <div className="card w-96 bg-base-100 shadow-xl">
                                 <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                                
+
                                 <div className="card-body">
-                                <div className='flex justify-between'>
-                                    <p>Start: {contest.startDate}</p>
-                                    <p>End: {contest.endDate}</p>
-                                </div>
+                                    <div className='flex justify-between'>
+                                        <p>Start: {contest.startDate}</p>
+                                        <p>End: {contest.endDate}</p>
+                                    </div>
                                     <h2 className="card-title">
                                         {contest.name}
                                         <div className="badge badge-secondary">{contest.status}</div>
@@ -94,6 +93,11 @@ const PopularContest = () => {
 
                 </Swiper>
 
+            </div>
+            <div className='flex justify-center items-center mt-6'>
+                <Link>
+                    <button className='btn bg-[#0677A1] hover:text-[#0677A1] font-bold hover:bg-white text-white'>Show All</button>
+                </Link>
             </div>
 
         </div>
