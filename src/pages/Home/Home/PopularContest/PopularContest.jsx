@@ -62,13 +62,22 @@ const PopularContest = () => {
             <div>
                 <Swiper
                     ref={swiperRef}
-                    slidesPerView={3}
                     spaceBetween={30}
-                    pagination={{
-                        clickable: true,
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 1,
+                        },
+                        // when window width is >= 640px
+                        640: {
+                            slidesPerView: 2,
+                        },
+                        // when window width is >= 1024px
+                        1024: {
+                            slidesPerView: 3,
+                        },
                     }}
-                // modules={[Pagination]}
-                // className="mySwiper"
                 >
                     {
                         contests.map(contest => <SwiperSlide key={contest.id}>
@@ -96,7 +105,7 @@ const PopularContest = () => {
 
             </div>
             <div className='flex justify-center items-center mt-6'>
-                <Link>
+                <Link to='/allContest'>
                     <button className='btn bg-[#0677A1] hover:text-[#0677A1] font-bold hover:bg-white text-white'>Show All</button>
                 </Link>
             </div>

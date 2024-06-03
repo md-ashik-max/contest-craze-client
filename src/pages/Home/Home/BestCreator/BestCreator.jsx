@@ -29,7 +29,7 @@ const BestCreator = () => {
     };
 
     return (
-        <div className="container max-w-7xl mx-auto py-8 mb-28">
+        <div className="container max-w-7xl lg:mx-auto py-8 mb-28">
             <div className="text-center">
                 <h2 className="text-4xl font-bold font-roboto text-center mb-8">Top Contest Creators</h2>
                 <div className="flex flex-col justify-center items-center space-y-2">
@@ -39,16 +39,28 @@ const BestCreator = () => {
                 <p>Meet our top contest creators: John Doe, Jane Smith, and Emily Johnson, leading the way in art, <br />photography, and coding challenges with their innovative and engaging contests.</p>
             </div>
             <div className='relative mt-12'>
-                <div className='px-24'>
+                <div className='md:px-24'>
                     <Swiper
                         ref={swiperRef}
-                        slidesPerView={3}
                         spaceBetween={30}
-                        pagination={{
-                            clickable: true,
+                        pagination={{ clickable: true }}
+                        breakpoints={{
+                            // Small devices (mobile)
+                            320: {
+                                slidesPerView: 1,
+                                className: 'small-device',
+                            },
+                            // Medium devices (tablet)
+                            640: {
+                                slidesPerView: 2,
+                                className: 'medium-device',
+                            },
+                            // Large devices (desktop)
+                            1024: {
+                                slidesPerView: 3,
+                                className: 'large-device',
+                            },
                         }}
-                    // modules={[Pagination]}
-                    // className="mySwiper"
                     >
                         {
                             topCreators.map(creator => <SwiperSlide key={creator.id}>
@@ -73,7 +85,7 @@ const BestCreator = () => {
 
 
                 </div>
-                <div className='absolute w-full flex justify-between top-1/2'>
+                <div className='md:absolute w-full flex md:justify-between justify-center gap-6 mt-4 top-1/2'>
                     <div>
                         <button className='btn w-12 h-12 rounded-full border-[#0677A1] border-dashed bg-transparent hover:bg-[#0677A1] text-[#0677A1] font-bold hover:text-white' onClick={handlePrev}><FaArrowLeft></FaArrowLeft></button>
                     </div>

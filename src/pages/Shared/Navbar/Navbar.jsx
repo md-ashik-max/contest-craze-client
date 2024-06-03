@@ -33,7 +33,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 fixed z-50 px-24">
+        <div className="navbar bg-base-100 fixed z-50 md:px-24">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -44,8 +44,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="flex items-center">
-                    <img className="w-24 h-24" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
-                    <h3 className="text-4xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
+                    <img className="w-12 h-12 md:w-24 md:h-24" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
+                    <h3 className="text-xl md:text-4xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -67,7 +67,7 @@ const Navbar = () => {
 
                 </label>
                     <Link to='/signIn'>
-                    <button className="btn text-lg font-bold text-[#0677A1] bg-transparent border-2 border-[#0677A1] hover:text-white hover:bg-[#0677A1]">Sign In</button>
+                    <button className="btn md:text-lg font-bold text-[#0677A1] bg-transparent border-2 border-[#0677A1] hover:text-white hover:bg-[#0677A1]">Sign In</button>
                 </Link>
             </div>
         </div>
