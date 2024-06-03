@@ -10,7 +10,7 @@ import 'swiper/css';
 import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import Countdown from '../../../../components/Countdown';
 
 
 const PopularContest = () => {
@@ -85,6 +85,7 @@ const PopularContest = () => {
                                         <div className="badge badge-secondary">{contest.status}</div>
                                     </h2>
                                     <p>{contest.description}</p>
+                                    <Countdown></Countdown>
                                 </div>
                             </div>
                         </SwiperSlide>)
