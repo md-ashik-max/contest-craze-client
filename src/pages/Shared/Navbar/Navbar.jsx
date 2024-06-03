@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { CgLogOut } from "react-icons/cg";
 
 
 const Navbar = () => {
@@ -97,10 +98,11 @@ const Navbar = () => {
                 </label>
                 {user ? <>
                     <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn m-1">Click</div>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li> <button onClick={handleLogOut} className="btn md:text-lg font-bold text-[#0677A1] bg-transparent border-2 border-[#0677A1] hover:text-white hover:bg-[#0677A1]">Log Out</button></li>
+                        <div tabIndex={0} role="button"><img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" /></div>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 space-y-4">
+                            <li><h3 className="text-xl font-bold">{user?.displayName}</h3></li>
+                            <li><button className="font-bold text-[#0677A1] bg-transparent hover:text-white">Dashboard</button></li>
+                            <li> <button onClick={handleLogOut} className="text-black font-bold hover:text-red-600">Log Out <CgLogOut className="text-xl font-bold"></CgLogOut></button></li>
                         </ul>
                     </div>
                 </>

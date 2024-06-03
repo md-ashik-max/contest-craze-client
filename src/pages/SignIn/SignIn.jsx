@@ -1,64 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import Swal from "sweetalert2";
-// import useAuth from "../../hooks/useAuth";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 
 const SignIn = () => {
 
-    // const { user, loading, signIn, googleLogin } = useAuth();
+    const { user, loading, signIn, googleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/')
-    //     }
-    // }, [user, navigate])
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user, navigate])
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
         console.log(email, password)
-        // signIn(email, password)
-        //     .then(() => {
-        //         Swal.fire({
-        //             icon: "success",
-        //             title: "Sign in User Successfully",
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //         });
-        //         navigate(location?.state ? location.state : "/")
-        //     })
-        //     .catch(error => {
-        //         console.error(error)
-        //         toast.error(error.message)
-        //     })
+        signIn(email, password)
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Sign in User Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location?.state ? location.state : "/")
+            })
+            .catch(error => {
+                console.error(error)
+                toast.error(error.message)
+            })
 
     };
+   
 
-    // const loginWithGoogle = () => {
-    //     googleLogin();
-    //     navigate(location?.state ? location.state : "/")
-    //     Swal.fire({
-    //         position: "top-end",
-    //         icon: "success",
-    //         title: "Sign in User Successfully",
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //     });
+    const loginWithGoogle = () => {
+        googleLogin();
+        navigate(location?.state ? location.state : "/")
+        Swal.fire({
+            icon: "success",
+            title: "Sign in User Successfully",
+        });
 
-    // };
-    // if (user || loading) return
+    };
+    if (user || loading) return
 
 
     return (
@@ -67,7 +63,7 @@ const SignIn = () => {
                 <div className="flex flex-col items-center">
                     <h3 className="text-3xl font-bold">Sign In</h3>
                     <div className="flex gap-8 text-xl my-6">
-                        <button className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaGoogle></FaGoogle></button>
+                        <button onClick={()=>loginWithGoogle()} className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaGoogle></FaGoogle></button>
                         <button className="btn bg-transparent text-[#0677A1] border border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaFacebookF></FaFacebookF></button>
 
                     </div>

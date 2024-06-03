@@ -44,18 +44,16 @@ const BestCreator = () => {
                         ref={swiperRef}
                         spaceBetween={30}
                         pagination={{ clickable: true }}
+                        lazy={true}
                         breakpoints={{
-                            // Small devices (mobile)
                             320: {
                                 slidesPerView: 1,
                                 className: 'small-device',
                             },
-                            // Medium devices (tablet)
                             640: {
                                 slidesPerView: 2,
                                 className: 'medium-device',
                             },
-                            // Large devices (desktop)
                             1024: {
                                 slidesPerView: 3,
                                 className: 'large-device',
