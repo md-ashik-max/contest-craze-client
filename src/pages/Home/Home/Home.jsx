@@ -1,5 +1,5 @@
 
-// import Countdown from "../../../components/Countdown";
+
 import Advertise from "./Advertise/Advertise";
 import Banner from "./Banner/Banner";
 import BestCreator from "./BestCreator/BestCreator";
@@ -13,7 +13,6 @@ const Home = () => {
             <PopularContest></PopularContest>
             <Advertise></Advertise>
             <BestCreator></BestCreator>
-            {/* <Countdown></Countdown> */}
             
         </div>
     );

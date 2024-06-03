@@ -104,7 +104,7 @@ const SignIn = () => {
             <div className="animate__animated animate__fadeInRight md:ml-12 w-full h-full py-6  md:py-56 flex flex-col items-center bg-[#0677A1] rounded-r-2xl rounded-t-3xl md:rounded-l-[150px] text-white text-center">
                 <h3 className="text-4xl font-bold">Hello Friend!</h3>
                 <p className="my-6">Sign Up with your personal details to use all <br /> of site features</p>
-                <Link to='/register'><button className="btn bg-[#E64398]  text-white">Sign Up</button></Link>
+                <Link to='/signUp'><button className="btn bg-[#E64398]  text-white">Sign Up</button></Link>
             </div>
             <ToastContainer></ToastContainer>
         </div>
