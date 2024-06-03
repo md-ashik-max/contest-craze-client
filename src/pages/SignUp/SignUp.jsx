@@ -1,52 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { IoEyeSharp } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 
 const SignUp = () => {
-    // const { user, loading, createUser, updateUserProfile } = useContext(AuthContext);
+    const { user, loading, createUser, updateUserProfile } = useAuth();
     const [registerError, setRegisterError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/')
-    //     }
-    // }, [user, navigate])
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user, navigate])
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
         const fullName = data.fullName;
-        const image = data.image;
-        console.log(email,password,fullName,image)
-        
-        // createUser(email, password)
-        //     .then(() => {
-        //         updateUserProfile(fullName, image)
-        //             .then(() => {
-        //                 navigate(location?.state ? location.state : "/")
-        //                 Swal.fire({
-        //                     icon: "success",
-        //                     title: "Created User Successfully",
-        //                     showConfirmButton: false,
-        //                     timer: 1500
-        //                 });
+        const image = data.image; 
+        createUser(email, password)
+            .then(() => {
+                updateUserProfile(fullName, image)
+                    .then(() => {
+                        navigate(location?.state ? location.state : "/")
+                        Swal.fire({
+                            icon: "success",
+                            title: "Created User Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
 
-        //             })
+                    })
 
-        //     })
-        //     .catch(error => {
-        //         setRegisterError(error.message)
-        //     })
+            })
+            .catch(error => {
+                setRegisterError(error.message)
+            })
 
     }
 
-    // if (user || loading) return
+    if (user || loading) return
     return (
         <div className="flex flex-col my-12 md:flex-row justify-center items-center max-w-5xl mx-auto rounded-2xl shadow-2xl">
             <div className="animate__animated animate__fadeInRight w-full h-full py-6  md:py-[244px] flex flex-col items-center bg-[#512DA8] rounded-r-2xl rounded-t-3xl md:rounded-r-[150px] text-center text-white">
