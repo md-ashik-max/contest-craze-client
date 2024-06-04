@@ -10,6 +10,9 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import ManageUsers from "../pages/Dashboard/AdminRoute/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import PrivetRoute from "./PrivetRoute";
+import CreatorRoute from "./CreatorRoute";
+import AddContest from "../pages/Dashboard/CreatorRoute/AddContest";
 
 
   export const router = createBrowserRouter([
@@ -32,7 +35,7 @@ import AdminRoute from "./AdminRoute";
         },
         {
           path:'/allContest',
-          element:<AllContest></AllContest>
+          element:<PrivetRoute><AllContest></AllContest></PrivetRoute>
         }
       ]
     },
@@ -41,10 +44,20 @@ import AdminRoute from "./AdminRoute";
       element:<Dashboard></Dashboard>,
       errorElement:<ErrorPage></ErrorPage>,
       children:[
+        // admin route
         {
           path:'manageUsers',
           element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        },
+
+        // creator route
+
+        {
+          path:'addContest',
+          element:<CreatorRoute><AddContest></AddContest></CreatorRoute>
         }
+
+
       ]
     }
   ]);

@@ -1,20 +1,20 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useAdmin from "../hooks/useAdmin";
+import useCreator from "../hooks/useCreator";
 
 
-const AdminRoute = ({children}) => {
+const CreatorRoute = ({children}) => {
     const { user, loading } = useAuth();
-    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isCreator, isCreatorLoading] = useCreator();
     const location = useLocation();
-    if (loading || isAdminLoading) {
+    if (loading || isCreatorLoading) {
         return <span className="loading loading-spinner text-info"></span>
     }
-    if (user && isAdmin) {
+    if (user && isCreator) {
         return children;
     }
 
     return <Navigate to={'/dashboard'} state={{ from: location }} replace></Navigate>;
 };
 
-export default AdminRoute;
+export default CreatorRoute;
