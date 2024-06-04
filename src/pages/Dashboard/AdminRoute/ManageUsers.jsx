@@ -29,6 +29,65 @@ const ManageUsers = () => {
             })
 
     }
+
+    const handleMakeCreator = user => {
+        axiosSecure.patch(`/users/creator/${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        title: `${user.name} is now creator`,
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+                }
+            })
+
+    }
+
+    const handleDeleteUser = id => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.delete(`/users/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0)
+                            refetch()
+                        swalWithBootstrapButtons.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelled",
+                    text: "Your imaginary file is safe :)",
+                    icon: "error"
+                });
+            }
+        });
+    }
+
     return (
         <div>
             <div className="flex justify-evenly">
@@ -62,17 +121,19 @@ const ManageUsers = () => {
                                             <div className="dropdown dropdown-left">
                                                 <div tabIndex={0} role="button" className="btn m-1 text-[#0677A1] border-[#0677A1]"><FaUsers></FaUsers></div>
                                                 <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                    <li><button 
-                                                    onClick={() => handleMakeAdmin(user)}
-                                                    className="text-[#0677A1] border-[#0677A1] font-bold">Admin</button></li>
-                                                    <li><button className="text-[#0677A1] border-[#0677A1] font-bold">Creator</button></li>
+                                                    <li><button
+                                                        onClick={() => handleMakeAdmin(user)}
+                                                        className="text-[#0677A1] border-[#0677A1] font-bold">Admin</button></li>
+                                                    <li><button
+                                                        onClick={() => handleMakeCreator(user)}
+                                                        className="text-[#0677A1] border-[#0677A1] font-bold">Creator</button></li>
                                                 </ul>
                                             </div>
                                         )}
                                     </td>
                                     <td>
                                         <button
-                                            // onClick={() => handleDeleteUser(user._id)}
+                                            onClick={() => handleDeleteUser(user._id)}
                                             className="btn border-[#B91C1C]  text-[#B91C1C]">
                                             <FaTrashAlt></FaTrashAlt>
                                         </button>

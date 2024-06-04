@@ -4,11 +4,13 @@ import { BiSolidToTop } from "react-icons/bi";
 import { NavLink, Outlet } from "react-router-dom";
 import { LuListChecks } from "react-icons/lu";
 import { BsTrophy } from "react-icons/bs";
+import useAdmin from "../hooks/useAdmin";
+import useCreator from "../hooks/useCreator";
 
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isCreator = false;
+    const [isAdmin] = useAdmin();
+    const [isCreator] = useCreator();
     return (
         <div className="flex">
             <div className="lg:w-64 min-h-screen bg-[#0677A1]">
