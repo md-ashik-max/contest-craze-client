@@ -7,17 +7,17 @@ import { BsTrophy } from "react-icons/bs";
 
 
 const Dashboard = () => {
-    const isAdmin = false;
-    const isCreator = true;
+    const isAdmin = true;
+    const isCreator = false;
     return (
         <div className="flex">
-            <div className="w-64 min-h-screen bg-[#0677A1]">
-                <ul className="menu text-white font-bold">
+            <div className="lg:w-64 min-h-screen bg-[#0677A1]">
+                <ul className="menu text-white lg:font-bold">
                     {
                         isAdmin ?
                             <>
                                 <li><NavLink to='/dashboard/adminHome'><FaHome></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to='/dashboard/allUsers'><FaUsers /> Manage Users</NavLink></li>
+                                <li><NavLink to='/dashboard/manageUsers'><FaUsers /> Manage Users</NavLink></li>
                                 <li><NavLink to='/dashboard/manageContests'><FaList></FaList> Manage Contests</NavLink></li>
                             </>
                             : isCreator ?
@@ -44,7 +44,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="flex-1 p-16">
+            <div className="flex-1 p-4 lg:p-16">
                 <Outlet></Outlet>
             </div>
 
