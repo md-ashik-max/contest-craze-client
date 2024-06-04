@@ -9,6 +9,7 @@ import AllContest from "../pages/AllContest/AllContest/AllContest";
 import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import ManageUsers from "../pages/Dashboard/AdminRoute/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 
   export const router = createBrowserRouter([
@@ -42,7 +43,7 @@ import ManageUsers from "../pages/Dashboard/AdminRoute/ManageUsers";
       children:[
         {
           path:'manageUsers',
-          element:<ManageUsers></ManageUsers>
+          element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
         }
       ]
     }
