@@ -100,8 +100,12 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button"><img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" /></div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 space-y-4 flex flex-col items-center">
-                            <li><h3 className="text-xl font-bold">{user?.displayName}</h3></li>
-                            <li><button className="font-bold text-[#0677A1] bg-transparent hover:text-white">Dashboard</button></li>
+                            <img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
+                            <h3 className="text-xl font-bold">{user?.displayName}</h3>
+                            <button className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]">View Profile</button>
+                            <Link to='/dashboard'>
+                                <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
+                            </Link>
                             <li> <button onClick={handleLogOut} className="text-black font-bold hover:text-red-600">Log Out <CgLogOut className="text-xl font-bold"></CgLogOut></button></li>
                         </ul>
                     </div>

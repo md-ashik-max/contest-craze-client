@@ -7,6 +7,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AllContest from "../pages/AllContest/AllContest/AllContest";
 import SignUp from "../pages/SignUp/SignUp";
+import Dashboard from "../Layout/Dashboard";
 
 
   export const router = createBrowserRouter([
@@ -33,4 +34,9 @@ import SignUp from "../pages/SignUp/SignUp";
         }
       ]
     },
+    {
+      path:'/dashboard',
+      element:<Dashboard></Dashboard>,
+      errorElement:<ErrorPage></ErrorPage>,
+    }
   ]);
