@@ -5,6 +5,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const SignUp = () => {
@@ -13,6 +14,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
     useEffect(() => {
         if (user) {
             navigate('/')
@@ -23,20 +25,33 @@ const SignUp = () => {
         const email = data.email;
         const password = data.password;
         const fullName = data.fullName;
-        const image = data.image; 
+        const image = data.image;
         createUser(email, password)
             .then(() => {
                 updateUserProfile(fullName, image)
                     .then(() => {
-                        navigate(location?.state ? location.state : "/")
-                        Swal.fire({
-                            icon: "success",
-                            title: "Created User Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        const userInfo = {
+                            email: data.email,
+                            name: data.fullName
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data)
+                                navigate(location?.state ? location.state : "/")
+                                Swal.fire({
+                                    title: "Created user successfully",
+                                    showClass: {
+                                        popup: `animate__animated animate__fadeInUp animate__faster`
+                                    },
+                                    hideClass: {
+                                        popup: `animate__animated animate__fadeOutDown animate__faster`
+                                    }
+                                });
+                            })
+
 
                     })
+
 
             })
             .catch(error => {

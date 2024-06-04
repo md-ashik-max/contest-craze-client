@@ -7,10 +7,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const SignIn = () => {
-
+    const axiosPublic = useAxiosPublic();
     const { user, loading, signIn, googleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
@@ -43,17 +44,46 @@ const SignIn = () => {
             })
 
     };
-   
 
-    const loginWithGoogle = () => {
-        googleLogin();
-        navigate(location?.state ? location.state : "/")
-        Swal.fire({
-            icon: "success",
-            title: "Sign in User Successfully",
-        });
 
-    };
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            navigate('/')
+                            Swal.fire({
+                                title: "Created user successfully",
+                                showClass: {
+                                    popup: `animate__animated animate__fadeInUp animate__faster`
+                                },
+                                hideClass: {
+                                    popup: `animate__animated animate__fadeOutDown animate__faster`
+                                }
+                            });
+                        } else {
+                            navigate('/')
+                            Swal.fire({
+                                title: "Logged in user successfully",
+                                showClass: {
+                                    popup: `animate__animated animate__fadeInUp animate__faster`
+                                },
+                                hideClass: {
+                                    popup: `animate__animated animate__fadeOutDown animate__faster`
+                                }
+                            });
+
+                        }
+                    })
+            })
+
+    }
     if (user || loading) return
 
 
@@ -63,7 +93,7 @@ const SignIn = () => {
                 <div className="flex flex-col items-center">
                     <h3 className="text-3xl font-bold">Sign In</h3>
                     <div className="flex gap-8 text-xl my-6">
-                        <button onClick={()=>loginWithGoogle()} className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaGoogle></FaGoogle></button>
+                        <button onClick={() => handleGoogleLogin()} className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaGoogle></FaGoogle></button>
                         <button className="btn bg-transparent text-[#0677A1] border border-[#0677A1] hover:text-white  hover:bg-[#0677A1]"><FaFacebookF></FaFacebookF></button>
 
                     </div>

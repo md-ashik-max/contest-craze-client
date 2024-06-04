@@ -6,15 +6,15 @@ import 'swiper/swiper-bundle.css';
 const BestCreator = () => {
     const swiperRef = useRef(null);
     const [topCreators, setTopCreators] = useState([]);
-    const [contestCreators, setContestCreators] = useState([]);
 
     useEffect(() => {
         fetch('/bestCreator.json')
             .then(res => res.json())
-            .then(data => setContestCreators(data))
-        const sortedCreators = contestCreators.sort((a, b) => b.participants - a.participants).slice(0, 5);
-        setTopCreators(sortedCreators);
-    }, [contestCreators]);
+            .then(data => {
+                const sortedCreators = data.sort((a, b) => b.participants - a.participants).slice(0, 5);
+                setTopCreators(sortedCreators);
+            });
+    }, []);
 
     const handleNext = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
