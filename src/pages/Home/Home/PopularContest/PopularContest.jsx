@@ -40,7 +40,7 @@ const PopularContest = () => {
     return (
         <div className="max-w-7xl mx-auto my-28">
             <div className="text-center">
-                <h2 className="text-4xl font-bold font-roboto my-3">OUR RUNNING <span className="text-[#E64398]">CONTESTS</span></h2>
+                <h2 className="text-4xl font-bold font-roboto my-3">OUR POPULAR <span className="text-[#E64398]">CONTESTS</span></h2>
                 <div className="flex flex-col justify-center items-center space-y-2">
                     <img className="w-12" src="https://i.ibb.co/2sFHBqw/line-thin.png" alt="" />
                     <img className="w-16" src="https://i.ibb.co/2sFHBqw/line-thin.png" alt="" />
@@ -83,7 +83,7 @@ const PopularContest = () => {
                 >
                     {
                         contests.map(contest => <SwiperSlide key={contest.id}>
-                            <div className="card w-96 bg-base-100 shadow-xl">
+                            <div className="card bg-base-100 shadow-xl">
                                 <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
 
                                 <div className="card-body">

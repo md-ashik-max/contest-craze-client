@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 
 const ManageContest = () => {
-    const [allContest, ,refetch] = useAllContest();
+    const [allContest, , refetch] = useAllContest();
     const axiosSecure = useAxiosSecure()
 
 
@@ -24,6 +24,54 @@ const ManageContest = () => {
                 }
             })
 
+    }
+
+
+    const handleDeleteContest = (id) => {
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // console.log(id)
+                axiosSecure.delete(`/contests/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            swalWithBootstrapButtons.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelled",
+                    text: "Your imaginary file is safe :)",
+                    icon: "error"
+                });
+            }
+        });
     }
     return (
         <div>
@@ -83,7 +131,7 @@ const ManageContest = () => {
                                         </th>
                                         <th>
                                             <button
-                                                // onClick={() => handleDeleteMenu(item._id)}
+                                                onClick={() => handleDeleteContest(item._id)}
                                                 className="btn border-[#B91C1C]  text-[#B91C1C]">
                                                 <FaTrashAlt></FaTrashAlt>
                                             </button>
