@@ -1,8 +1,9 @@
 import 'animate.css';
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { FaAngleDoubleRight } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const ContestCard = ({ contest }) => {
-    const { name, image, description } = contest;
+    const { name, image, description,_id } = contest;
     return (
         <div className="card bg-base-100 shadow-xl border-2">
             <div className="relative group">
@@ -21,12 +22,14 @@ const ContestCard = ({ contest }) => {
                     </h2>
                 </div>
                 <p className='h-16'>{description}</p>
-                <button className="flex btn bg-transparent text-[#0677A1] border-0 font-bold hover:bg-[#0677A1] hover:text-white items-center gap-2 group">
-                    View Details
-                    <span className="hidden group-hover:flex text-xl animate__animated animate__fadeInLeft">
-                        <MdKeyboardDoubleArrowRight />
-                    </span>
-                </button>
+                <Link to={`/contestDetails/${_id}`}>
+                    <button className="flex btn w-full bg-transparent text-[#0677A1] border-0 font-bold hover:bg-[#0677A1] hover:text-white items-center gap-2 group">
+                        View Details
+                        <span className="hidden group-hover:flex text-xl animate__animated animate__fadeInLeft">
+                        <FaAngleDoubleRight />
+                        </span>
+                    </button>
+                </Link>
             </div>
         </div>
     );

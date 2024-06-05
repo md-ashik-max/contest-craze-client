@@ -14,6 +14,7 @@ import PrivetRoute from "./PrivetRoute";
 import CreatorRoute from "./CreatorRoute";
 import AddContest from "../pages/Dashboard/CreatorRoute/AddContest";
 import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
+import ContestDetails from "../pages/AllContest/ContestDetails/ContestDetails";
 
 
   export const router = createBrowserRouter([
@@ -36,7 +37,12 @@ import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
         },
         {
           path:'/allContest',
-          element:<PrivetRoute><AllContest></AllContest></PrivetRoute>
+          element:<AllContest></AllContest>,
+        },
+        {
+          path:'/contestDetails/:id',
+          element:<PrivetRoute><ContestDetails></ContestDetails></PrivetRoute>,
+          loader:({params})=>fetch(`http://localhost:5000/contests/${params.id}`)
         }
       ]
     },

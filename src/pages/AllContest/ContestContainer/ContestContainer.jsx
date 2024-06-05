@@ -11,7 +11,7 @@ const ContestContainer = () => {
     const { data: contests = [] } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/contests/success')
+            const res = await axiosPublic.get('/contests/confirm/success')
             return res.data
         }
     })

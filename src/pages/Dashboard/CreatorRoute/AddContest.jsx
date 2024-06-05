@@ -45,13 +45,13 @@ const AddContest = () => {
                 price: parseFloat(data.price),
                 category: data.category,
                 description: data.description,
-                priceMoney: data.prizeMoney,
+                prizeMoney: data.prizeMoney,
                 instruction:data.instruction,
-                deadline: selectedDate.toISOString(),
+                deadline: selectedDate.toISOString().split('T')[0],
                 creatorName: user?.displayName,
                 creatorEmail: user?.email
             }
-            // console.log(contest)
+            console.log(contest)
             const contestRes = await axiosSecure.post('/contests', contest)
             // console.log(contestRes.data)
             if (contestRes.data.insertedId) {
