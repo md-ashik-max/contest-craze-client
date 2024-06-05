@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 import PrivetRoute from "./PrivetRoute";
 import CreatorRoute from "./CreatorRoute";
 import AddContest from "../pages/Dashboard/CreatorRoute/AddContest";
+import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
 
 
   export const router = createBrowserRouter([
@@ -48,6 +49,10 @@ import AddContest from "../pages/Dashboard/CreatorRoute/AddContest";
         {
           path:'manageUsers',
           element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        },
+        {
+          path:'manageContest',
+          element:<AdminRoute><ManageContest></ManageContest></AdminRoute>
         },
 
         // creator route

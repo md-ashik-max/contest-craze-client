@@ -20,7 +20,9 @@ const PopularContest = () => {
     useEffect(() => {
         fetch('/popularContest.json')
             .then(res => res.json())
-            .then(data => setContests(data))
+            .then(data =>{ 
+                const sortedContest = data.sort((a, b) => b.participants - a.participants).slice(0, 6);
+                setContests(sortedContest)})
     }, [])
 
     const handleNext = () => {

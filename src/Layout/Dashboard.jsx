@@ -20,7 +20,7 @@ const Dashboard = () => {
                             <>
                                 <li><NavLink to='/dashboard/adminHome'><FaHome></FaHome> Admin Home</NavLink></li>
                                 <li><NavLink to='/dashboard/manageUsers'><FaUsers /> Manage Users</NavLink></li>
-                                <li><NavLink to='/dashboard/manageContests'><FaList></FaList> Manage Contests</NavLink></li>
+                                <li><NavLink to='/dashboard/manageContest'><FaList></FaList> Manage Contests</NavLink></li>
                             </>
                             : isCreator ?
 
