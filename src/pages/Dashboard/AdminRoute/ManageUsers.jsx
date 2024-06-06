@@ -2,6 +2,7 @@ import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle";
 
 
 const ManageUsers = () => {
@@ -90,12 +91,11 @@ const ManageUsers = () => {
 
     return (
         <div>
-            <div className="flex justify-evenly">
-                <h2 className="lg:text-3xl font-bold">User</h2>
-                <h2 className="lg:text-3xl font-bold">All User : {users.length}</h2>
-            </div>
-            <div className="my-6 lg:my-24">
-                <div className="overflow-x-auto rounded-t-3xl">
+            <SectionTitle title={"Manage Your User"} description={"Edit, and manage user profiles. Update account settings, security features, and communication preferences. "}></SectionTitle>
+
+            <div className="my-6">
+                <h1 className="text-2xl font-bold text-center">Total User: {users.length}</h1>
+                <div className="overflow-x-auto overflow-y-hidden my-8 rounded-t-2xl">
                     <table className="table">
                         {/* head */}
                         <thead className="bg-[#0677A1] text-white lg:text-lg">
@@ -108,43 +108,56 @@ const ManageUsers = () => {
                             </tr>
                         </thead>
                         <tbody className="lg:text-xl">
-
                             {
-                                users.map((user, index) => <tr key={user._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>
-                                        {user?.role === 'admin' || user?.role === 'creator' ? (
-                                            <span className="text-[#0677A1] text-[16px] font-bold">{user?.role === 'admin' ? 'Admin' : 'Creator'}</span>
-                                        ) : (
-                                            <div className="dropdown dropdown-left">
-                                                <div tabIndex={0} role="button" className="btn m-1 text-[#0677A1] border-[#0677A1]"><FaUsers></FaUsers></div>
-                                                <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                    <li><button
-                                                        onClick={() => handleMakeAdmin(user)}
-                                                        className="text-[#0677A1] border-[#0677A1] font-bold">Admin</button></li>
-                                                    <li><button
-                                                        onClick={() => handleMakeCreator(user)}
-                                                        className="text-[#0677A1] border-[#0677A1] font-bold">Creator</button></li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </td>
-                                    <td>
-                                        <button
-                                            onClick={() => handleDeleteUser(user._id)}
-                                            className="btn border-[#B91C1C]  text-[#B91C1C]">
-                                            <FaTrashAlt></FaTrashAlt>
-                                        </button>
-                                    </td>
-                                </tr>)
+                                users.map((user, index) => (
+                                    <tr key={user._id}>
+                                        <th>{index + 1}</th>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>
+                                            {user?.role === 'admin' || user?.role === 'creator' ? (
+                                                <span className="text-[#0677A1] text-[16px] font-bold">
+                                                    {user?.role === 'admin' ? 'Admin' : 'Creator'}
+                                                </span>
+                                            ) : (
+                                                <div className="dropdown dropdown-left">
+                                                    <div tabIndex={0} role="button" className="btn m-1 text-[#0677A1] border-[#0677A1]">
+                                                        <FaUsers />
+                                                    </div>
+                                                    <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                        <li>
+                                                            <button
+                                                                onClick={() => handleMakeAdmin(user)}
+                                                                className="text-[#0677A1] border-[#0677A1] font-bold">
+                                                                Admin
+                                                            </button>
+                                                        </li>
+                                                        <li>
+                                                            <button
+                                                                onClick={() => handleMakeCreator(user)}
+                                                                className="text-[#0677A1] border-[#0677A1] font-bold">
+                                                                Creator
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => handleDeleteUser(user._id)}
+                                                className="btn border-[#B91C1C] text-[#B91C1C]">
+                                                <FaTrashAlt />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
                             }
-
                         </tbody>
                     </table>
                 </div>
             </div>
+
 
         </div>
     );

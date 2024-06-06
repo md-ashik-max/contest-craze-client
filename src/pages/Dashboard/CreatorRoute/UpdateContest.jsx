@@ -1,24 +1,23 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import useAuth from "../../../hooks/useAuth";
-import SectionTitle from "../../../components/SectionTitle";
-
-// import { Field, Label, Select } from '@headlessui/react';
 import clsx from 'clsx';
 import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import SectionTitle from "../../../components/SectionTitle";
+import { useLoaderData } from "react-router-dom";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-const AddContest = () => {
+const UpdateContest = () => {
 
+    const { name, category, price, prizeMoney, deadline, description, instruction, _id } = useLoaderData()
     const { user } = useAuth();
     const [selectedDate, setSelectedDate] = useState(null);
 
@@ -27,7 +26,7 @@ const AddContest = () => {
     };
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const { register, handleSubmit, reset,  formState: { errors }  } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         // console.log(data)
@@ -46,19 +45,20 @@ const AddContest = () => {
                 category: data.category,
                 description: data.description,
                 prizeMoney: data.prizeMoney,
-                instruction:data.instruction,
-                deadline: selectedDate.toISOString().split('T')[0],
+                instruction: data.instruction,
+                deadline: selectedDate !== null ? selectedDate.toISOString().split('T')[0] : deadline,
                 creatorName: user?.displayName,
-                creatorEmail: user?.email
+                creatorEmail: user?.email,
+                creatorPhoto: user?.photoURL
             }
             // console.log(contest)
-            const contestRes = await axiosSecure.post('/contests', contest)
+            const contestRes = await axiosSecure.patch(`/contests/update/${_id}`, contest)
             // console.log(contestRes.data)
-            if (contestRes.data.insertedId) {
+            if (contestRes.data.modifiedCount > 0) {
                 reset();
                 Swal.fire({
                     title: "Good Job!",
-                    text: `${data.name} successfully added the contests.`,
+                    text: `${data.name} successfully updated the contests.`,
                     icon: "success"
                 });
             }
@@ -66,9 +66,10 @@ const AddContest = () => {
         }
 
     };
+
     return (
         <div>
-            <SectionTitle title={"Launch Your Contest Now"} description={"Easily set up a contest, define the challenge, and watch submissions come in."}></SectionTitle>
+            <SectionTitle title={"Update Your Contest Now"} description={"Easily update a contest, define the challenge, and watch submissions come in."}></SectionTitle>
             <div className="max-w-4xl mx-auto">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* contest name */}
@@ -77,7 +78,7 @@ const AddContest = () => {
                             <div className="label">
                                 <span className="label-text">Contest Name</span>
                             </div>
-                            <input type="text" {...register("name", { required: true })} placeholder="Contest Name" className="input input-bordered w-full" />
+                            <input defaultValue={name} type="text" {...register("name", { required: true })} placeholder="Contest Name" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="md:flex gap-6">
@@ -88,6 +89,7 @@ const AddContest = () => {
                                 <label className="text-sm font-medium" htmlFor="category">Contest Category</label>
                                 <div className="relative mt-2">
                                     <select
+                                        defaultValue={category}
                                         {...register("category", { required: true })}
                                         className={clsx(
                                             'w-full appearance-none rounded-lg border bg-white p-3 text-sm',
@@ -96,7 +98,6 @@ const AddContest = () => {
                                         )}
                                         id="category"
                                     >
-                                        <option disabled value="default">Select Your Category</option>
                                         <option value="Image Design Contests">Image Design Contests</option>
                                         <option value="Article Writing">Article Writing</option>
                                         <option value="Marketing Strategy">Marketing Strategy</option>
@@ -121,7 +122,7 @@ const AddContest = () => {
                             <div className="label">
                                 <span className="label-text">Price</span>
                             </div>
-                            <input type="text" {...register("price", { required: true })} placeholder="Price" className="input input-bordered w-full" />
+                            <input type="text" defaultValue={price} {...register("price", { required: true })} placeholder="Price" className="input input-bordered w-full" />
                         </label>
 
                     </div>
@@ -131,7 +132,7 @@ const AddContest = () => {
                             <div className="label">
                                 <span className="label-text">Prize money</span>
                             </div>
-                            <input type="text" {...register("prizeMoney", { required: true })} placeholder="Price Money" className="input input-bordered w-full" />
+                            <input defaultValue={prizeMoney} type="text" {...register("prizeMoney", { required: true })} placeholder="Price Money" className="input input-bordered w-full" />
                         </label>
                         {/* contest deadline */}
                         <div className="form-control w-full">
@@ -139,7 +140,7 @@ const AddContest = () => {
                             <DatePicker
                                 className='border-2 p-3 w-full mt-2 rounded-lg'
                                 id="date"
-                                selected={selectedDate}
+                                selected={deadline}
                                 onChange={handleDateChange}
                                 dateFormat="MM/dd/yyyy"
                                 placeholderText="MM/DD/YYYY"
@@ -152,7 +153,7 @@ const AddContest = () => {
                             <div className="label">
                                 <span className="label-text">Submission Instruction</span>
                             </div>
-                            <textarea className="textarea textarea-bordered h-24" {...register("instruction", { required: true })} placeholder="Task Submission text instruction"></textarea>
+                            <textarea defaultValue={instruction} className="textarea textarea-bordered h-24" {...register("instruction", { required: true })} placeholder="Task Submission text instruction"></textarea>
                         </label>
                     </div>
                     <div>
@@ -160,15 +161,15 @@ const AddContest = () => {
                             <div className="label">
                                 <span className="label-text">Contest Details</span>
                             </div>
-                            <textarea className="textarea textarea-bordered h-24" {...register("description", { required: true })} placeholder="Contest Details"></textarea>
+                            <textarea defaultValue={description} className="textarea textarea-bordered h-24" {...register("description", { required: true })} placeholder="Contest Details"></textarea>
                         </label>
                     </div>
                     <div>
-                        <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full" />
+                        <input type="file" {...register("image" , { required: true })} className="file-input file-input-bordered w-full" />
                     </div>
 
                     <div>
-                        <button className="btn btn-outline btn-info flex gap-4 w-full text-lg px-16">Add Contest</button>
+                        <button className="btn btn-outline btn-info flex gap-4 w-full text-lg px-16">Update Contest</button>
                     </div>
                 </form>
 
@@ -178,4 +179,4 @@ const AddContest = () => {
     );
 };
 
-export default AddContest;
+export default UpdateContest;

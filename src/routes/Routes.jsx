@@ -15,6 +15,8 @@ import CreatorRoute from "./CreatorRoute";
 import AddContest from "../pages/Dashboard/CreatorRoute/AddContest";
 import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
 import ContestDetails from "../pages/AllContest/ContestDetails/ContestDetails";
+import MyCreatedContest from "../pages/Dashboard/CreatorRoute/MyCreatedContest";
+import UpdateContest from "../pages/Dashboard/CreatorRoute/UpdateContest";
 
 
   export const router = createBrowserRouter([
@@ -66,9 +68,19 @@ import ContestDetails from "../pages/AllContest/ContestDetails/ContestDetails";
         {
           path:'addContest',
           element:<CreatorRoute><AddContest></AddContest></CreatorRoute>
-        }
+        },
+        {
+          path:'myCreated',
+          element:<CreatorRoute><MyCreatedContest></MyCreatedContest></CreatorRoute>
+
+        },
+        {
+          path:'updateContest/:id',
+          element:<CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
+          loader:({params})=>fetch(`http://localhost:5000/contests/${params.id}`)
+        },
 
 
       ]
-    }
+    },
   ]);

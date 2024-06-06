@@ -6,50 +6,55 @@ import { LuListChecks } from "react-icons/lu";
 import { BsTrophy } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
 import useCreator from "../hooks/useCreator";
+import { HiOutlineBars3 } from "react-icons/hi2";
 
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [isCreator] = useCreator();
     return (
-        <div className="flex">
-            <div className="lg:w-64 min-h-screen bg-[#0677A1]">
-                <ul className="menu text-white lg:font-bold">
-                    {
-                        isAdmin ?
-                            <>
-                                <li><NavLink to='/dashboard/adminHome'><FaHome></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to='/dashboard/manageUsers'><FaUsers /> Manage Users</NavLink></li>
-                                <li><NavLink to='/dashboard/manageContest'><FaList></FaList> Manage Contests</NavLink></li>
-                            </>
-                            : isCreator ?
-
+        <div>
+            <div className="flex">
+                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content p-6 fixed">
+                    <label htmlFor="my-drawer" className="btn text-2xl font-bold drawer-button"><HiOutlineBars3 /></label>
+                </div>
+                <div className="drawer-side z-10">
+                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <ul className="menu p-4 w-80 min-h-full bg-[#0677A1] text-white font-bold">
+                        {
+                            isAdmin ?
                                 <>
-                                    <li><NavLink to='/dashboard/creatorHome'><FaHome></FaHome> Creator Home</NavLink></li>
-                                    <li><NavLink to='/dashboard/addContest'><MdPostAdd /> Add Contest</NavLink></li>
-                                    <li><NavLink to='/dashboard/myCreated'><FaListAlt /> My Created Contest</NavLink></li>
-                                    <li><NavLink to='/dashboard/submittedContest'><BiSolidToTop /> Submitted Contest</NavLink></li>
+                                    <li><NavLink to='/dashboard/adminHome'><FaHome></FaHome> Admin Home</NavLink></li>
+                                    <li><NavLink to='/dashboard/manageUsers'><FaUsers /> Manage Users</NavLink></li>
+                                    <li><NavLink to='/dashboard/manageContest'><FaList></FaList> Manage Contests</NavLink></li>
                                 </>
-                                :
-                                <>
-                                    <li><NavLink to='/dashboard/userHome'><FaHome></FaHome> User Home</NavLink></li>
-                                    <li><NavLink to='/dashboard/reservation'><LuListChecks /> MyParticipated Contest</NavLink></li>
-                                    <li><NavLink to='/dashboard/payment'><FaWallet></FaWallet> Payment History</NavLink></li>
-                                    <li><NavLink to='/dashboard/cart'><BsTrophy />My Winning Contest</NavLink></li>
-                                    <li><NavLink to='/dashboard/review'><MdRateReview /> Add Review</NavLink></li>
-                                </>
-                    }
+                                : isCreator ?
 
-                    <div className="divider"></div>
-                    <li><NavLink to='/'><FaHome></FaHome>Home</NavLink></li>
+                                    <>
+                                        <li><NavLink to='/dashboard/creatorHome'><FaHome></FaHome> Creator Home</NavLink></li>
+                                        <li><NavLink to='/dashboard/addContest'><MdPostAdd /> Add Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/myCreated'><FaListAlt /> My Created Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/submittedContest'><BiSolidToTop /> Submitted Contest</NavLink></li>
+                                    </>
+                                    :
+                                    <>
+                                        <li><NavLink to='/dashboard/userHome'><FaHome></FaHome> User Home</NavLink></li>
+                                        <li><NavLink to='/dashboard/reservation'><LuListChecks /> MyParticipated Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/payment'><FaWallet></FaWallet> Payment History</NavLink></li>
+                                        <li><NavLink to='/dashboard/cart'><BsTrophy />My Winning Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/review'><MdRateReview /> Add Review</NavLink></li>
+                                    </>
+                        }
 
-                </ul>
-
+                        <div className="divider"></div>
+                        <li><NavLink to='/'><FaHome></FaHome>Home</NavLink></li>
+                    </ul>
+                </div>
             </div>
-            <div className="flex-1 p-4 lg:p-16">
+            <div className="flex-1 p-4 max-w-7xl mx-auto">
                 <Outlet></Outlet>
             </div>
-
         </div>
     );
 };
