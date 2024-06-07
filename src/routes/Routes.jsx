@@ -17,6 +17,9 @@ import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
 import ContestDetails from "../pages/AllContest/ContestDetails/ContestDetails";
 import MyCreatedContest from "../pages/Dashboard/CreatorRoute/MyCreatedContest";
 import UpdateContest from "../pages/Dashboard/CreatorRoute/UpdateContest";
+import UserHome from "../pages/Dashboard/UserRoute/UserHome";
+import CreatorHome from "../pages/Dashboard/CreatorRoute/CreatorHome";
+import AdminHome from "../pages/Dashboard/AdminRoute/AdminHome";
 
 
   export const router = createBrowserRouter([
@@ -53,7 +56,20 @@ import UpdateContest from "../pages/Dashboard/CreatorRoute/UpdateContest";
       element:<Dashboard></Dashboard>,
       errorElement:<ErrorPage></ErrorPage>,
       children:[
+
+        // user route
+        {
+          path:'userHome',
+          element:<UserHome></UserHome>
+        },
+
+
         // admin route
+
+        {
+          path:'adminHome',
+          element:<AdminHome></AdminHome>
+        },
         {
           path:'manageUsers',
           element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
@@ -64,6 +80,11 @@ import UpdateContest from "../pages/Dashboard/CreatorRoute/UpdateContest";
         },
 
         // creator route
+
+        {
+          path:'creatorHome',
+          element:<CreatorHome></CreatorHome>
+        },
 
         {
           path:'addContest',

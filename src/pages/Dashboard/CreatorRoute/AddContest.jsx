@@ -49,7 +49,9 @@ const AddContest = () => {
                 instruction:data.instruction,
                 deadline: selectedDate.toISOString().split('T')[0],
                 creatorName: user?.displayName,
-                creatorEmail: user?.email
+                creatorEmail: user?.email,
+                creatorImage:user?.photoURL,
+                participants:0
             }
             // console.log(contest)
             const contestRes = await axiosSecure.post('/contests', contest)

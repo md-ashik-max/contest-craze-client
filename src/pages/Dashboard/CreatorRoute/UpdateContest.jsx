@@ -140,7 +140,7 @@ const UpdateContest = () => {
                             <DatePicker
                                 className='border-2 p-3 w-full mt-2 rounded-lg'
                                 id="date"
-                                selected={deadline}
+                                selected={selectedDate|| deadline}
                                 onChange={handleDateChange}
                                 dateFormat="MM/dd/yyyy"
                                 placeholderText="MM/DD/YYYY"

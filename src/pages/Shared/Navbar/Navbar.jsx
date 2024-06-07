@@ -3,10 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { CgLogOut } from "react-icons/cg";
+import useAdmin from "../../../hooks/useAdmin";
+import useCreator from "../../../hooks/useCreator";
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin();
+    const [isCreator] = useCreator();
+
 
     const handleLogOut = () => {
         logOut()
@@ -103,9 +108,20 @@ const Navbar = () => {
                             <img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
                             <h3 className="text-xl font-bold">{user?.displayName}</h3>
                             <button className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]">View Profile</button>
-                            <Link to='/dashboard'>
-                                <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
-                            </Link>
+                            {
+                                isAdmin ?
+                                 <Link to='/dashboard/adminHome'>
+                                    <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
+                                </Link>
+                                 : 
+                                 isCreator ? <Link to='/dashboard/creatorHome'>
+                                    <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
+                                </Link>
+                                    :
+                                    <Link to='/dashboard/userHome'>
+                                        <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
+                                    </Link>
+                            }
                             <li> <button onClick={handleLogOut} className="text-black font-bold hover:text-red-600">Log Out <CgLogOut className="text-xl font-bold"></CgLogOut></button></li>
                         </ul>
                     </div>
