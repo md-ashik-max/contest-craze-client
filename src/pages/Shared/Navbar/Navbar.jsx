@@ -107,7 +107,6 @@ const Navbar = () => {
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 space-y-4 flex flex-col items-center">
                             <img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
                             <h3 className="text-xl font-bold">{user?.displayName}</h3>
-                            <button className="btn bg-transparent text-[#0677A1] border-[#0677A1] hover:text-white  hover:bg-[#0677A1]">View Profile</button>
                             {
                                 isAdmin ?
                                  <Link to='/dashboard/adminHome'>
@@ -118,7 +117,7 @@ const Navbar = () => {
                                     <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
                                 </Link>
                                     :
-                                    <Link to='/dashboard/userHome'>
+                                    <Link to='/dashboard/userProfile'>
                                         <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
                                     </Link>
                             }

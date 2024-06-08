@@ -17,7 +17,7 @@ const ContestContainer = () => {
     })
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3;
+    const itemsPerPage = 9;
     const totalPages = Math.ceil(contests.length / itemsPerPage);
 
     // Calculate the current items to display

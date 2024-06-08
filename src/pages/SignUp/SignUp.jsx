@@ -63,10 +63,10 @@ const SignUp = () => {
     if (user || loading) return
     return (
         <div className="flex flex-col my-12 md:flex-row justify-center items-center max-w-5xl mx-auto rounded-2xl shadow-2xl">
-            <div className="animate__animated animate__fadeInRight w-full h-full py-6  md:py-[244px] flex flex-col items-center bg-[#512DA8] rounded-r-2xl rounded-t-3xl md:rounded-r-[150px] text-center text-white">
+            <div className="animate__animated animate__fadeInRight w-full h-full py-6  md:py-[244px] flex flex-col items-center bg-[#0677A1]  rounded-r-2xl rounded-t-3xl md:rounded-r-[150px] text-center text-white">
                 <h3 className="text-4xl font-bold">Welcome Back!</h3>
                 <p className="my-6">Enter your personal details to use all <br /> of site features</p>
-                <Link to='/signIn'><button className="btn bg-gradient-to-r from-emerald-300 to-sky-400 text-white">Login</button></Link>
+                <Link to='/signIn'><button className="btn bg-white text-[#0677A1] font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#0677A1] hover:text-white transition-all duration-200">Login</button></Link>
             </div>
             <div className="animate__animated animate__fadeInRight card shrink-0 w-full md:w-1/2 py-6 bg-base-100">
                 <div className="flex flex-col items-center">
@@ -116,7 +116,7 @@ const SignUp = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-transparent text-emerald-300 border border-sky-400 hover:text-white  hover:bg-gradient-to-r from-emerald-300 to-sky-400">Register</button>
+                        <button className="btn bg-transparent text-[#0677A1] hover:text-white  hover:bg-[#0677A1]">Register</button>
                         {
                             registerError && <p className="text-red-600">{registerError}</p>
                         }

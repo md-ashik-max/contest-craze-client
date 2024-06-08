@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 
-const CheckoutForm = ({ price, id,name }) => {
+const CheckoutForm = ({ price, id,name,image }) => {
 
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
@@ -70,21 +70,19 @@ const CheckoutForm = ({ price, id,name }) => {
                     transactionId: paymentIntent.id,
                     date: new Date(),
                     contestId: id,
-                    contestName:name
+                    contestName:name,
+                    contestImage:image
                 }
                 const res = await axiosSecure.post('/payments', payment)
                 if (res.data.insertedId) {
                     const contestRes = await axiosSecure.get(`/contests/${id}`);
                     let currentParticipants = contestRes.data.participants;
-                    console.log("Current Participants:", currentParticipants);
-
-                    // Ensure the currentParticipants is a number
+                    // console.log("Current Participants:", currentParticipants);
                     currentParticipants = Number(currentParticipants) || 0;
 
-                    // Increment the participants
                     const updatedParticipants = currentParticipants + 1;
 
-                    console.log("Updated Participants:", updatedParticipants);
+                    // console.log("Updated Participants:", updatedParticipants);
 
                     axiosSecure.patch(`/contests/participant/${id}`, { participants: updatedParticipants })
                         .then(res => {

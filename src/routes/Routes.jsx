@@ -22,6 +22,7 @@ import AdminHome from "../pages/Dashboard/AdminRoute/AdminHome";
 import SubmittedContest from "../pages/Dashboard/CreatorRoute/SubmittedContest";
 import MyProfile from "../pages/Dashboard/UserRoute/MyProfile";
 import MyParticipatedContest from "../pages/Dashboard/UserRoute/MyParticipatedContest";
+import ContestParticipants from "../pages/Dashboard/CreatorRoute/ContestParticipants";
 
 
 export const router = createBrowserRouter([
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
 
       // user route
       {
-        path: 'userHome',
+        path: 'userProfile',
         element: <MyProfile></MyProfile>
       },
       {
@@ -109,6 +110,11 @@ export const router = createBrowserRouter([
       {
         path: 'submittedContest',
         element: <CreatorRoute><SubmittedContest></SubmittedContest></CreatorRoute>
+      },
+      {
+        path: 'contestParticipants/:name',
+        element: <CreatorRoute><ContestParticipants></ContestParticipants></CreatorRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/submitContest/${params.name}`)
       }
 
 

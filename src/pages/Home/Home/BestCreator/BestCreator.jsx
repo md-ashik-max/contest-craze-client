@@ -62,14 +62,14 @@ const BestCreator = () => {
                         {
                             topCreators.map(creator => <SwiperSlide key={creator._id}>
                                 <div className="card border-2 bg-base-100">
-                                    <figure><img className='w-40 h-40 rounded-full' src={creator.creatorPhoto} alt="Shoes" /></figure>
+                                    <figure><img className='w-40 h-40 rounded-full' src={creator.creatorImage} alt="Shoes" /></figure>
 
                                     <div className="card-body text-center">
                                         <h2 className="text-2xl font-bold">
                                             {creator.creatorName}
 
                                         </h2>
-                                        <h5 className='text-lg font-bold'>Contest : {creator.name}</h5>
+                                        <h5 className='text-lg font-bold h-16'>Contest : {creator.name}</h5>
                                         <p>{creator.description.slice(0,50)}...</p>
                                         <p>participants :{creator.participants}</p>
                                     </div>

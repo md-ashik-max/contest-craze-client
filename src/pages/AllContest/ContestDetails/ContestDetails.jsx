@@ -52,7 +52,7 @@ const ContestDetails = () => {
                             </span>
                         </button> */}
                         {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="flex btn w-52 bg-transparent text-[#0677A1] border-[#0677A1] border-dashed font-bold hover:bg-[#0677A1] hover:text-white items-center gap-2 group" onClick={() => document.getElementById('my_modal_4').showModal()}>open modal
+                        <button className="flex btn w-52 bg-transparent text-[#0677A1] border-[#0677A1] border-dashed font-bold hover:bg-[#0677A1] hover:text-white items-center gap-2 group" onClick={() => document.getElementById('my_modal_4').showModal()}>Register Now
                             <span className="hidden group-hover:flex text-xl animate__animated animate__fadeInLeft">
                                 <FaAngleDoubleRight />
                             </span>
@@ -64,6 +64,7 @@ const ContestDetails = () => {
                                         price={price}
                                         id={_id}
                                         name={name}
+                                        image={image}
                                     ></CheckoutForm>
 
                                 </Elements>

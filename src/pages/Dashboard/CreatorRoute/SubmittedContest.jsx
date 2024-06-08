@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle";
 import useAllContest from "../../../hooks/useAllContest";
 
 
 const SubmittedContest = () => {
-    const [allContest, , ] = useAllContest();
+    const [allContest, ,] = useAllContest();
     return (
         <div>
             <SectionTitle title={"Submitted Contests"} description={"Welcome to the Submitted Contests section! Here, you can view all the contests that have been submitted. "}></SectionTitle>
@@ -34,10 +35,12 @@ const SubmittedContest = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        {item.name}
+                                        <Link to={`/dashboard/contestParticipants/${item?.name}`}>
+                                            <h3 className="hover:font-bold">{item.name}</h3>
+                                        </Link>
                                     </td>
                                     <td>${item.prizeMoney}</td>
-                                   
+
                                 </tr>)
                         }
                     </tbody>

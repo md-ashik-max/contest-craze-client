@@ -27,7 +27,7 @@ const SignIn = () => {
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
-        console.log(email, password)
+        // console.log(email, password)
         signIn(email, password)
             .then(() => {
                 Swal.fire({
@@ -55,7 +55,7 @@ const SignIn = () => {
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data.insertedId) {
                             navigate('/')
                             Swal.fire({
@@ -130,7 +130,7 @@ const SignIn = () => {
             <div className="animate__animated animate__fadeInRight md:ml-12 w-full h-full py-6  md:py-56 flex flex-col items-center bg-[#0677A1] rounded-r-2xl rounded-t-3xl md:rounded-l-[150px] text-white text-center">
                 <h3 className="text-4xl font-bold">Hello Friend!</h3>
                 <p className="my-6">Sign Up with your personal details to use all <br /> of site features</p>
-                <Link to='/signUp'><button className="btn bg-[#E64398]  text-white">Sign Up</button></Link>
+                <Link to='/signUp'><button className="btn bg-white text-[#0677A1] font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#0677A1] hover:text-white transition-all duration-200">Sign Up</button></Link>
             </div>
             <ToastContainer></ToastContainer>
         </div>

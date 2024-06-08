@@ -1,4 +1,4 @@
-import { FaHome, FaList, FaListAlt, FaUsers, FaWallet } from "react-icons/fa";
+import { FaHome, FaList, FaListAlt, FaUsers } from "react-icons/fa";
 import { MdPostAdd } from "react-icons/md";
 import { BiSolidToTop } from "react-icons/bi";
 import { NavLink, Outlet } from "react-router-dom";
@@ -58,9 +58,8 @@ const Dashboard = () => {
                                             <img className="w-12 h-12" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />
                                             <h3 className="text-xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
                                         </div>
-                                        <li><NavLink to='/dashboard/userHome'><FaHome></FaHome> User Home</NavLink></li>
+                                        <li><NavLink to='/dashboard/userProfile'><FaHome></FaHome>My Profile</NavLink></li>
                                         <li><NavLink to='/dashboard/participate'><LuListChecks /> MyParticipated Contest</NavLink></li>
-                                        <li><NavLink to='/dashboard/payment'><FaWallet></FaWallet> Payment History</NavLink></li>
                                         <li><NavLink to='/dashboard/cart'><BsTrophy />My Winning Contest</NavLink></li>
                                     </>
                         }
