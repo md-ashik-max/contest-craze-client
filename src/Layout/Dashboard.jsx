@@ -1,5 +1,5 @@
 import { FaHome, FaList, FaListAlt, FaUsers, FaWallet } from "react-icons/fa";
-import { MdPostAdd, MdRateReview } from "react-icons/md";
+import { MdPostAdd } from "react-icons/md";
 import { BiSolidToTop } from "react-icons/bi";
 import { NavLink, Outlet } from "react-router-dom";
 import { LuListChecks } from "react-icons/lu";
@@ -59,10 +59,9 @@ const Dashboard = () => {
                                             <h3 className="text-xl font-black font-roboto">Contest <span className="text-[#E64398]">Craze</span></h3>
                                         </div>
                                         <li><NavLink to='/dashboard/userHome'><FaHome></FaHome> User Home</NavLink></li>
-                                        <li><NavLink to='/dashboard/reservation'><LuListChecks /> MyParticipated Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/participate'><LuListChecks /> MyParticipated Contest</NavLink></li>
                                         <li><NavLink to='/dashboard/payment'><FaWallet></FaWallet> Payment History</NavLink></li>
                                         <li><NavLink to='/dashboard/cart'><BsTrophy />My Winning Contest</NavLink></li>
-                                        <li><NavLink to='/dashboard/review'><MdRateReview /> Add Review</NavLink></li>
                                     </>
                         }
 

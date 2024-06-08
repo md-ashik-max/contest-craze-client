@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 
-const CheckoutForm = ({ price, id, contestName }) => {
+const CheckoutForm = ({ price, id,name }) => {
 
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
@@ -70,7 +70,7 @@ const CheckoutForm = ({ price, id, contestName }) => {
                     transactionId: paymentIntent.id,
                     date: new Date(),
                     contestId: id,
-                    contestName: contestName
+                    contestName:name
                 }
                 const res = await axiosSecure.post('/payments', payment)
                 if (res.data.insertedId) {

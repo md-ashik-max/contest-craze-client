@@ -2,19 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import useAllContest from '../../../../hooks/useAllContest';
 
 const BestCreator = () => {
     const swiperRef = useRef(null);
     const [topCreators, setTopCreators] = useState([]);
+    const[allContest]=useAllContest()
 
     useEffect(() => {
-        fetch('/bestCreator.json')
-            .then(res => res.json())
-            .then(data => {
-                const sortedCreators = data.sort((a, b) => b.participants - a.participants).slice(0, 5);
-                setTopCreators(sortedCreators);
-            });
-    }, []);
+        
+                const sortedCreators = allContest.sort((a, b) => b.participants - a.participants).slice(0, 5);
+                setTopCreators(sortedCreators)
+    }, [allContest]);
 
     const handleNext = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -44,7 +43,7 @@ const BestCreator = () => {
                         ref={swiperRef}
                         spaceBetween={30}
                         pagination={{ clickable: true }}
-                        lazy={true}
+                        lazy="true"
                         breakpoints={{
                             320: {
                                 slidesPerView: 1,
@@ -61,17 +60,17 @@ const BestCreator = () => {
                         }}
                     >
                         {
-                            topCreators.map(creator => <SwiperSlide key={creator.id}>
+                            topCreators.map(creator => <SwiperSlide key={creator._id}>
                                 <div className="card border-2 bg-base-100">
-                                    <figure><img className='w-40 h-40 rounded-full' src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                                    <figure><img className='w-40 h-40 rounded-full' src={creator.creatorPhoto} alt="Shoes" /></figure>
 
                                     <div className="card-body text-center">
                                         <h2 className="text-2xl font-bold">
-                                            {creator.name}
+                                            {creator.creatorName}
 
                                         </h2>
-                                        <h5 className='text-lg font-bold'>Contest : {creator.contestName}</h5>
-                                        <p>{creator.description}</p>
+                                        <h5 className='text-lg font-bold'>Contest : {creator.name}</h5>
+                                        <p>{creator.description.slice(0,50)}...</p>
                                         <p>participants :{creator.participants}</p>
                                     </div>
                                 </div>

@@ -63,6 +63,7 @@ const ContestDetails = () => {
                                     <CheckoutForm
                                         price={price}
                                         id={_id}
+                                        name={name}
                                     ></CheckoutForm>
 
                                 </Elements>

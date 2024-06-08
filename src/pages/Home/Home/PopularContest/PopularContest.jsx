@@ -8,22 +8,25 @@ import 'swiper/css/pagination';
 import 'swiper/css';
 // import { Pagination } from 'swiper/modules';
 import { useEffect, useRef, useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Countdown from '../../../../components/Countdown';
+import useAllContest from '../../../../hooks/useAllContest';
 
 
 const PopularContest = () => {
     const swiperRef = useRef(null);
     const [contests, setContests] = useState([]);
+    const [allContest] = useAllContest();
+
 
     useEffect(() => {
-        fetch('/popularContest.json')
-            .then(res => res.json())
-            .then(data =>{ 
-                const sortedContest = data.sort((a, b) => b.participants - a.participants).slice(0, 6);
-                setContests(sortedContest)})
-    }, [])
+
+        if (allContest && allContest.length > 0) {
+            const sortedContest = [...allContest].sort((a, b) => b.participants - a.participants).slice(0, 6);
+            setContests(sortedContest);
+        }
+    }, [allContest])
 
     const handleNext = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -82,21 +85,35 @@ const PopularContest = () => {
                     }}
                 >
                     {
-                        contests.map(contest => <SwiperSlide key={contest.id}>
-                            <div className="card bg-base-100 shadow-xl">
-                                <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                        contests.map(contest => <SwiperSlide key={contest._id}>
+                            <div className="card bg-base-100 shadow-xl border-2">
+                                <div className="relative group">
+                                    <figure className="overflow-hidden h-64"><img className="h-full w-full rounded-t-xl hover:scale-150 transition duration-500 cursor-pointer object-cover" src={contest.image} alt="" /></figure>
+                                    <h3
+                                        className="absolute bottom-0 text-xl font-bold text-white bg-[#0677A1] p-6 w-full hidden group-hover:flex animate__animated animate__zoomIn"
+                                    >
+                                        A way of feeling
+                                    </h3>
+                                </div>
 
                                 <div className="card-body">
-                                    <div className='flex justify-between'>
-                                        <p>Start: {contest.startDate}</p>
-                                        <p>End: {contest.endDate}</p>
+                                    <p className='font-bold'>Total Participants:{contest.participants}</p>
+                                    <div className='h-[70px]'>
+                                        <h2 className="card-title text-2xl font-bold">
+                                            {contest.name}
+                                        </h2>
                                     </div>
-                                    <h2 className="card-title">
-                                        {contest.name}
-                                        <div className="badge badge-secondary">{contest.status}</div>
-                                    </h2>
-                                    <p>{contest.description}</p>
-                                    <Countdown></Countdown>
+
+                                    <p className='h-16'>{contest.description}</p>
+                                    <Countdown deadline={contest.deadline}></Countdown>
+                                    <Link to={`/contestDetails/${contest._id}`}>
+                                        <button className="flex btn w-full bg-transparent text-[#0677A1] border-0 font-bold hover:bg-[#0677A1] hover:text-white items-center gap-2 group">
+                                            View Details
+                                            <span className="hidden group-hover:flex text-xl animate__animated animate__fadeInLeft">
+                                                <FaAngleDoubleRight />
+                                            </span>
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </SwiperSlide>)

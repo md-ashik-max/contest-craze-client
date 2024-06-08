@@ -1,6 +1,6 @@
 import {
-    createBrowserRouter,
-  } from "react-router-dom";
+  createBrowserRouter,
+} from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import SignIn from "../pages/SignIn/SignIn";
@@ -17,91 +17,101 @@ import ManageContest from "../pages/Dashboard/AdminRoute/ManageContest";
 import ContestDetails from "../pages/AllContest/ContestDetails/ContestDetails";
 import MyCreatedContest from "../pages/Dashboard/CreatorRoute/MyCreatedContest";
 import UpdateContest from "../pages/Dashboard/CreatorRoute/UpdateContest";
-import UserHome from "../pages/Dashboard/UserRoute/UserHome";
 import CreatorHome from "../pages/Dashboard/CreatorRoute/CreatorHome";
 import AdminHome from "../pages/Dashboard/AdminRoute/AdminHome";
+import SubmittedContest from "../pages/Dashboard/CreatorRoute/SubmittedContest";
+import MyProfile from "../pages/Dashboard/UserRoute/MyProfile";
+import MyParticipatedContest from "../pages/Dashboard/UserRoute/MyParticipatedContest";
 
 
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      errorElement:<ErrorPage></ErrorPage>,
-      children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
-          path:'/signIn',
-          element:<SignIn></SignIn>
-        },
-        {
-          path:'/signUp',
-          element:<SignUp></SignUp>
-        },
-        {
-          path:'/allContest',
-          element:<AllContest></AllContest>,
-        },
-        {
-          path:'/contestDetails/:id',
-          element:<PrivetRoute><ContestDetails></ContestDetails></PrivetRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/contests/${params.id}`)
-        }
-      ]
-    },
-    {
-      path:'/dashboard',
-      element:<Dashboard></Dashboard>,
-      errorElement:<ErrorPage></ErrorPage>,
-      children:[
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/signIn',
+        element: <SignIn></SignIn>
+      },
+      {
+        path: '/signUp',
+        element: <SignUp></SignUp>
+      },
+      {
+        path: '/allContest',
+        element: <AllContest></AllContest>,
+      },
+      {
+        path: '/contestDetails/:id',
+        element: <PrivetRoute><ContestDetails></ContestDetails></PrivetRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/contests/${params.id}`)
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
 
-        // user route
-        {
-          path:'userHome',
-          element:<UserHome></UserHome>
-        },
-
-
-        // admin route
-
-        {
-          path:'adminHome',
-          element:<AdminHome></AdminHome>
-        },
-        {
-          path:'manageUsers',
-          element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
-        },
-        {
-          path:'manageContest',
-          element:<AdminRoute><ManageContest></ManageContest></AdminRoute>
-        },
-
-        // creator route
-
-        {
-          path:'creatorHome',
-          element:<CreatorHome></CreatorHome>
-        },
-
-        {
-          path:'addContest',
-          element:<CreatorRoute><AddContest></AddContest></CreatorRoute>
-        },
-        {
-          path:'myCreated',
-          element:<CreatorRoute><MyCreatedContest></MyCreatedContest></CreatorRoute>
-
-        },
-        {
-          path:'updateContest/:id',
-          element:<CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/contests/${params.id}`)
-        },
+      // user route
+      {
+        path: 'userHome',
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path:'participate',
+        element:<MyParticipatedContest></MyParticipatedContest>
+      },
 
 
-      ]
-    },
-  ]);
+      // admin route
+
+      {
+        path: 'adminHome',
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: 'manageUsers',
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+      },
+      {
+        path: 'manageContest',
+        element: <AdminRoute><ManageContest></ManageContest></AdminRoute>
+      },
+
+      // creator route
+
+      {
+        path: 'creatorHome',
+        element: <CreatorHome></CreatorHome>
+      },
+
+      {
+        path: 'addContest',
+        element: <CreatorRoute><AddContest></AddContest></CreatorRoute>
+      },
+      {
+        path: 'myCreated',
+        element: <CreatorRoute><MyCreatedContest></MyCreatedContest></CreatorRoute>
+
+      },
+      {
+        path: 'updateContest/:id',
+        element: <CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/contests/${params.id}`)
+      },
+      {
+        path: 'submittedContest',
+        element: <CreatorRoute><SubmittedContest></SubmittedContest></CreatorRoute>
+      }
+
+
+    ]
+  },
+]);
