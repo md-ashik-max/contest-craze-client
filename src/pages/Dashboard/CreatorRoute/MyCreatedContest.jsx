@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaComment, FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
@@ -79,6 +79,7 @@ const MyCreatedContest = () => {
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Status</th>
+                                <th>Actin</th>
                                 <th>Action</th>
                                 <th>Action</th>
                             </tr>
@@ -106,6 +107,26 @@ const MyCreatedContest = () => {
                                                 <p className="text-[#0677A1] font-bold">Pending</p>
 
                                         }
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <button
+                                                className="btn flex items-center m-1 text-[#0677A1] border-[#0677A1]"
+                                                onClick={() => document.getElementById(`modal_${contest._id}`).showModal()}
+                                            >
+                                              See Comment <FaComment />
+                                            </button>
+                                            <dialog id={`modal_${contest._id}`} className="modal">
+                                                <div className="modal-box w-11/12 max-w-5xl">
+                                                 {contest?.comment?.comment? <p> <span className="text-black font-bold">Comment : </span>{contest?.comment?.comment}</p> : <p>No comment yet</p>}
+                                                    <div className="modal-action">
+                                                        <form method="dialog">
+                                                            <button className="btn">Close</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </dialog>
+                                        </div>
                                     </td>
                                     <td>
                                         {

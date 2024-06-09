@@ -3,6 +3,8 @@ import useAllContest from "../../../hooks/useAllContest";
 import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import CommentBox from "./CommentBox";
+
 
 
 const ManageContest = () => {
@@ -88,14 +90,14 @@ const ManageContest = () => {
                                 <th>Contest Image</th>
                                 <th>Contest Name</th>
                                 <th>Price</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>Status</th>
+                                <th>Comment</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                allContest.map((item, index) =>
+                                allContest.map((item, index) => (
                                     <tr key={item._id}>
                                         <th>{index + 1}</th>
                                         <td>
@@ -105,12 +107,9 @@ const ManageContest = () => {
                                                         <img src={item.image} alt="Avatar Tailwind CSS Component" />
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </td>
-                                        <td>
-                                            {item.name}
-                                        </td>
+                                        <td>{item.name}</td>
                                         <td>${item.price}</td>
                                         <th>
                                             {
@@ -124,27 +123,43 @@ const ManageContest = () => {
                                             }
                                         </th>
                                         <th>
-                                            <button
-                                                className="btn m-1 text-[#0677A1] border-[#0677A1]">
-                                                <FaComment></FaComment>
-                                            </button>
+                                            {
+                                                item?.comment?.comment ? <p className="text-green-600 font-bold">Successfully Given</p>
+                                                    :
+                                                    <div>
+                                                        <button
+                                                            className="btn m-1 text-[#0677A1] border-[#0677A1]"
+                                                            onClick={() => document.getElementById(`modal_${item._id}`).showModal()}
+                                                        >
+                                                            <FaComment />
+                                                        </button>
+                                                        <dialog id={`modal_${item._id}`} className="modal">
+                                                            <div className="modal-box w-11/12 max-w-5xl">
+                                                                <CommentBox id={item._id} refetch={refetch} />
+                                                                <div className="modal-action">
+                                                                    <form method="dialog">
+                                                                        <button className="btn">Close</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </dialog>
+                                                    </div>
+                                            }
                                         </th>
                                         <th>
                                             <button
                                                 onClick={() => handleDeleteContest(item._id)}
-                                                className="btn border-[#B91C1C]  text-[#B91C1C]">
-                                                <FaTrashAlt></FaTrashAlt>
+                                                className="btn border-[#B91C1C] text-[#B91C1C]">
+                                                <FaTrashAlt />
                                             </button>
                                         </th>
-                                    </tr>)
+                                    </tr>
+                                ))
                             }
                         </tbody>
-
-
                     </table>
                 </div>
             </div>
-
         </div>
     );
 };
