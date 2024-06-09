@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
       {
         path: '/contestDetails/:id',
         element: <PrivetRoute><ContestDetails></ContestDetails></PrivetRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/contests/${params.id}`)
+        loader: ({ params }) => fetch(`https://contest-craze-server.vercel.app/contests/${params.id}`)
       }
     ]
   },
@@ -110,7 +110,7 @@ export const router = createBrowserRouter([
       {
         path: 'updateContest/:id',
         element: <CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/contests/${params.id}`)
+        loader: ({ params }) => fetch(`https://contest-craze-server.vercel.app/contests/${params.id}`)
       },
       {
         path: 'submittedContest',
@@ -119,7 +119,7 @@ export const router = createBrowserRouter([
       {
         path: 'contestParticipants/:name',
         element: <CreatorRoute><ContestParticipants></ContestParticipants></CreatorRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/submitContest/${params.name}`)
+        loader: ({ params }) => fetch(`https://contest-craze-server.vercel.app/submitContest/${params.name}`)
       }
 
 
