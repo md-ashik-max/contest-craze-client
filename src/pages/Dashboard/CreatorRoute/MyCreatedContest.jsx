@@ -66,7 +66,7 @@ const MyCreatedContest = () => {
     }
 
     return (
-        <div>
+        <div className="shadow-2xl p-12 rounded-xl">
             <SectionTitle title={"Manage all the contests you launched"} description={" Track & manage contests you created. View & edit your running competitions"}></SectionTitle>
             <div className="my-6 lg:my-24">
                 <h3 className="text-2xl font-bold text-center">My Created Contest : {myCreatedContests.length}</h3>

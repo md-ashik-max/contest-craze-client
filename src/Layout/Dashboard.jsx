@@ -16,8 +16,8 @@ const Dashboard = () => {
         <div>
             <div className="flex">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content p-6 fixed">
-                    <div className="flex items-center fixed">
+                <div className="drawer-content p-6 fixed bg-white bg-fixed">
+                    <div className="flex items-center">
                         <label htmlFor="my-drawer" className="btn text-2xl font-bold drawer-button"><HiOutlineBars3 /></label>
                         <div className="flex items-center">
                             <img className="w-12 h-12" src="https://i.ibb.co/kXJXvX6/design-13-removebg-preview.png" alt="" />

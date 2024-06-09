@@ -8,31 +8,27 @@ const Banner = () => {
     const items = [
         {
             img: 'https://i.ibb.co/h2wJSgk/banner-img1.jpg',
-            author: 'LUNDEV',
-            title: 'DESIGN SLIDER',
-            topic: 'ANIMAL',
-            des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
+            title: 'Unleash Your Creativity',
+            topic: 'Contest',
+            des: 'Join a vibrant community of creators and showcase your talent in art and more...',
         },
         {
             img: 'https://i.ibb.co/LvHv2WH/slider-img2.jpg',
-            author: 'LUNDEV',
-            title: 'DESIGN SLIDER',
-            topic: 'ANIMAL',
-            des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
+            title: 'Compete and Win',
+            topic: 'Contest',
+            des: 'Compete with passionate individuals and stand a chance to win fantastic rewards...',
         },
         {
-            img: 'https://i.ibb.co/HHkGRsb/slider-img3.jpg',
-            author: 'LUNDEV',
-            title: 'DESIGN SLIDER',
-            topic: 'ANIMAL',
-            des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
+            img: 'https://i.ibb.co/2cmdjjP/27526.jpg',
+            title: ' Discover New Talents',
+            topic: 'Contest',
+            des: 'Explore incredible works from talented participants across various contests...',
         },
         {
             img: 'https://i.ibb.co/h9mbfvY/slider-img4.jpg',
-            author: 'LUNDEV',
-            title: 'DESIGN SLIDER',
-            topic: 'ANIMAL',
-            des: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit...',
+            title: ' Join the Craze',
+            topic: 'Contest',
+            des: ' Join the Craze today and let your imagination run wild at Contest Craze!...',
         },
     ];
 
@@ -68,8 +64,7 @@ const Banner = () => {
                     >
                         <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
                         <div className="w-full h-full bg-slate-500">
-                            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white max-w-4xl">
-                                <div className="font-bold tracking-wide animate__animated animate__slideInUp">{item.author}</div>
+                            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 max-w-4xl">
                                 <div className="text-5xl font-bold leading-tight animate__animated animate__slideInUp">{item.title}</div>
                                 <div className="text-5xl font-bold text-[#E64398] animate__animated animate__slideInUp">{item.topic}</div>
                                 <div className="mt-4">{item.des}</div>

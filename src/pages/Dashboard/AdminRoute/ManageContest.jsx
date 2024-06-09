@@ -74,7 +74,7 @@ const ManageContest = () => {
         });
     }
     return (
-        <div>
+        <div className="shadow-2xl p-6 md:py-12 rounded-xl">
             <SectionTitle title={" Manage Your Contests"} description={"Easily access and Update details and manage submissions (if applicable) to ensure smooth contest execution."}></SectionTitle>
 
             <div>

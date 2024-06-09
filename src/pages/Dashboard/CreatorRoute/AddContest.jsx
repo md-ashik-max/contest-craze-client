@@ -69,7 +69,7 @@ const AddContest = () => {
 
     };
     return (
-        <div>
+        <div className="shadow-2xl md:py-12 rounded-xl p-4">
             <SectionTitle title={"Launch Your Contest Now"} description={"Easily set up a contest, define the challenge, and watch submissions come in."}></SectionTitle>
             <div className="max-w-4xl mx-auto">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

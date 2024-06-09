@@ -2,7 +2,7 @@
 const ContestBanner = () => {
     return (
         <div>
-            <img src="https://i.ibb.co/bNdCY46/contest-banner.jpg" alt="" />
+            <img src="https://i.ibb.co/pWGqSdD/contest-banner.jpg" alt="" />
             
         </div>
     );
