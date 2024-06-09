@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -7,13 +7,15 @@ import useAllContest from '../../../../hooks/useAllContest';
 const BestCreator = () => {
     const swiperRef = useRef(null);
     const [topCreators, setTopCreators] = useState([]);
-    const[allContest]=useAllContest()
+    const [allContest] = useAllContest();
+
+    const sortedCreators = useMemo(() => {
+        return [...allContest].sort((a, b) => b.participants - a.participants).slice(0, 5);
+    }, [allContest]);
 
     useEffect(() => {
-        
-                const sortedCreators = allContest.sort((a, b) => b.participants - a.participants).slice(0, 5);
-                setTopCreators(sortedCreators)
-    }, [allContest]);
+        setTopCreators(sortedCreators);
+    }, [sortedCreators]);
 
     const handleNext = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -60,39 +62,31 @@ const BestCreator = () => {
                         }}
                     >
                         {
-                            topCreators.map(creator => <SwiperSlide key={creator._id}>
-                                <div className="card border-2 bg-base-100">
-                                    <figure><img className='w-40 h-40 rounded-full' src={creator.creatorImage} alt="Shoes" /></figure>
-
-                                    <div className="card-body text-center">
-                                        <h2 className="text-2xl font-bold">
-                                            {creator.creatorName}
-
-                                        </h2>
-                                        <h5 className='text-lg font-bold h-16'>Contest : {creator.name}</h5>
-                                        <p>{creator.description.slice(0,50)}...</p>
-                                        <p>participants :{creator.participants}</p>
+                            topCreators.map(creator => (
+                                <SwiperSlide key={creator._id}>
+                                    <div className="card border-2 bg-base-100">
+                                        <figure><img className='w-40 h-40 rounded-full' src={creator.creatorImage} alt="Creator" /></figure>
+                                        <div className="card-body text-center">
+                                            <h2 className="text-2xl font-bold">{creator.creatorName}</h2>
+                                            <h5 className='text-lg font-bold h-16'>Contest : {creator.name}</h5>
+                                            <p>{creator.description.slice(0, 50)}...</p>
+                                            <p>Participants: {creator.participants}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </SwiperSlide>)
+                                </SwiperSlide>
+                            ))
                         }
-
-
                     </Swiper>
-
-
                 </div>
                 <div className='md:absolute w-full flex md:justify-between justify-center gap-6 mt-4 top-1/2'>
                     <div>
-                        <button className='btn w-12 h-12 rounded-full border-[#0677A1] border-dashed bg-transparent hover:bg-[#0677A1] text-[#0677A1] font-bold hover:text-white' onClick={handlePrev}><FaArrowLeft></FaArrowLeft></button>
+                        <button className='btn w-12 h-12 rounded-full border-[#0677A1] border-dashed bg-transparent hover:bg-[#0677A1] text-[#0677A1] font-bold hover:text-white' onClick={handlePrev}><FaArrowLeft /></button>
                     </div>
                     <div>
-                        <button className='btn w-12 h-12 rounded-full border-[#0677A1] border-dashed bg-transparent hover:bg-[#0677A1] text-[#0677A1] font-bold hover:text-white' onClick={handleNext}><FaArrowRight></FaArrowRight></button>
+                        <button className='btn w-12 h-12 rounded-full border-[#0677A1] border-dashed bg-transparent hover:bg-[#0677A1] text-[#0677A1] font-bold hover:text-white' onClick={handleNext}><FaArrowRight /></button>
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 };

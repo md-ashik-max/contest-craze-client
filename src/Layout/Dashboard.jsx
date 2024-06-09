@@ -60,7 +60,7 @@ const Dashboard = () => {
                                         </div>
                                         <li><NavLink to='/dashboard/userProfile'><FaHome></FaHome>My Profile</NavLink></li>
                                         <li><NavLink to='/dashboard/participate'><LuListChecks /> MyParticipated Contest</NavLink></li>
-                                        <li><NavLink to='/dashboard/cart'><BsTrophy />My Winning Contest</NavLink></li>
+                                        <li><NavLink to='/dashboard/winningContest'><BsTrophy />My Winning Contest</NavLink></li>
                                     </>
                         }
 

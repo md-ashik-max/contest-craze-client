@@ -12,7 +12,7 @@ const MyParticipatedContest = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic()
-    const { data: myParticipatedContest = [] } = useQuery({
+    const { data: myParticipatedContest = [],refetch } = useQuery({
         queryKey: ['myParticipatedContest'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payments/${user?.email}`);
@@ -43,6 +43,7 @@ const MyParticipatedContest = () => {
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
                         toast.success("Successfully joined the contest!");
+                        refetch()
                         setShowModal(false);
                     }
                 })

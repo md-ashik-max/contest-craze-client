@@ -1,9 +1,30 @@
 import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useState } from "react";
+
 
 
 const ContestParticipants = () => {
+
     const participants = useLoaderData();
-    console.log(participants)
+    const axiosSecure = useAxiosSecure();
+    const [winner, setWinner] = useState(participants.find(p => p.contestWinner === 'winner'));
+
+    const handleMakeWinner = participant => {
+        axiosSecure.patch(`/submitContest/${participant._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: `${participant.participantName} is now the winner of this contest`,
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+
+                    setWinner(participant);
+                }
+            });
+    };
     return (
         <div>
             {(!participants || participants.length === 0) ? (
@@ -24,35 +45,39 @@ const ContestParticipants = () => {
                         </thead>
                         <tbody>
                             {
-                                participants.map((participant, index) =>
+                                participants.map((participant, index) => (
                                     <tr key={index}>
                                         <th>{index + 1}</th>
                                         <td>
                                             <div className="flex items-center gap-3">
                                                 <div className="avatar">
                                                     <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={participant.participantPhoto} alt="Avatar Tailwind CSS Component" />
+                                                        <img src={participant.participantPhoto} alt="Avatar" />
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </td>
+                                        <td>{participant.participantName}</td>
+                                        <td>{participant.participantEmail}</td>
+                                        <td><a href={participant.submitLink} className="text-blue-600">{participant.submitLink}</a></td>
                                         <td>
-                                            {participant.participantName}
+                                        {
+                                                winner && winner._id === participant._id ? 
+                                                <p className="text-green-500 font-bold">Winner</p> : 
+                                                winner ? 
+                                                <p className="text-red-500 font-bold">Unsuccessful</p> : 
+                                                <button
+                                                    onClick={() => handleMakeWinner(participant)}
+                                                    className="btn m-1 bg-transparent font-bold hover:bg-[#0677A1] hover:text-white text-[#0677A1] border-[#0677A1]"
+                                                >
+                                                    Declare Win
+                                                </button>
+                                            }
                                         </td>
-                                        <td>
-                                            {participant.participantEmail}
-                                        </td>
-                                        <td>{participant.submitLink}</td>
-                                        <td>
-                                            <button className="btn m-1 bg-transparent font-bold hover:bg-[#0677A1] hover:text-white text-[#0677A1] border-[#0677A1]"> Declare Win</button>
-                                        </td>
-
-                                    </tr>)
+                                    </tr>
+                                ))
                             }
                         </tbody>
-
-
                     </table>
                 </div>
             )}

@@ -15,17 +15,17 @@ const AdminHome = () => {
                         <div className="relative">
                             <img
                                 className="h-32 w-32 md:w-40 md:h-40 rounded-full shadow-xl border-4 border-white"
-                                src={user.photoURL}
-                                alt={user.displayName}
+                                src={user?.photoURL}
+                                alt={user?.displayName}
                             />
                             <div className="absolute bottom-0 right-0 bg-green-500 rounded-full p-2 border-2 border-white shadow-md">
                                 <MdOutlineEmail className="text-white" />
                             </div>
                         </div>
-                        <p className="mt-4 text-2xl font-semibold text-gray-800">{user.displayName}</p>
+                        <p className="mt-4 text-2xl font-semibold text-gray-800">{user?.displayName}</p>
                         <p className="flex items-center gap-2 mt-2 text-gray-600">
                             <MdOutlineEmail className="text-xl text-blue-500" />
-                            {user.email}
+                            {user?.email}
                         </p>
                     </div>
                     <div className="md:w-2/3 text-center md:text-left px-4">
