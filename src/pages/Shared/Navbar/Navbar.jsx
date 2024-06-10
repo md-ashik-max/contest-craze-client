@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { CgLogOut } from "react-icons/cg";
+import { GiLaurelsTrophy } from "react-icons/gi";
+import { MdDashboardCustomize } from "react-icons/md";
 import useAdmin from "../../../hooks/useAdmin";
 import useCreator from "../../../hooks/useCreator";
 
@@ -107,21 +109,24 @@ const Navbar = () => {
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 space-y-4 flex flex-col items-center">
                             <img className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
                             <h3 className="text-xl font-bold">{user?.displayName}</h3>
+                            <Link to='/dashboard/leaderBoard'>
+                                <li><button className="flex items-center font-bold bg-transparent hover:text-[#0677A1]"><GiLaurelsTrophy />  LeaderBoard</button></li>
+                            </Link>
                             {
                                 isAdmin ?
-                                 <Link to='/dashboard/adminHome'>
-                                    <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
-                                </Link>
-                                 : 
-                                 isCreator ? <Link to='/dashboard/creatorHome'>
-                                    <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
-                                </Link>
-                                    :
-                                    <Link to='/dashboard/userProfile'>
-                                        <li><button className="font-bold bg-transparent hover:text-[#0677A1]">Dashboard</button></li>
+                                    <Link to='/dashboard/adminHome'>
+                                        <li><button className="font-bold bg-transparent hover:text-[#0677A1]"><MdDashboardCustomize /> Dashboard</button></li>
                                     </Link>
+                                    :
+                                    isCreator ? <Link to='/dashboard/creatorHome'>
+                                        <li><button className="flex items-center font-bold bg-transparent hover:text-[#0677A1]"><MdDashboardCustomize /> Dashboard</button></li>
+                                    </Link>
+                                        :
+                                        <Link to='/dashboard/userProfile'>
+                                            <li><button className="flex items-center font-bold bg-transparent hover:text-[#0677A1]"><MdDashboardCustomize /> Dashboard</button></li>
+                                        </Link>
                             }
-                            <li> <button onClick={handleLogOut} className="text-black font-bold hover:text-red-600">Log Out <CgLogOut className="text-xl font-bold"></CgLogOut></button></li>
+                            <li> <button onClick={handleLogOut} className="flex items-center text-black font-bold hover:text-red-600">Log Out <CgLogOut className="text-xl font-bold"></CgLogOut></button></li>
                         </ul>
                     </div>
                 </>

@@ -6,15 +6,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 
 
 const SignUp = () => {
     const { user, loading, createUser, updateUserProfile } = useAuth();
     const [registerError, setRegisterError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [disable, setDisable] = useState(true)
     const location = useLocation();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
     useEffect(() => {
         if (user) {
             navigate('/')
@@ -58,6 +64,15 @@ const SignUp = () => {
                 setRegisterError(error.message)
             })
 
+    }
+
+    const handleCaptchaValidate = (e) => {
+        const user_captcha_value = e.target.value;
+        if (validateCaptcha(user_captcha_value)) {
+            setDisable(false)
+        } else {
+            setDisable(true)
+        }
     }
 
     if (user || loading) return
@@ -114,9 +129,15 @@ const SignUp = () => {
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
+                        <div className="form-control">
+                            <label className="label">
+                                <LoadCanvasTemplate />
+                            </label>
+                            <input onBlur={handleCaptchaValidate} type="text" name="captcha" placeholder="Type The Text Above" className="input input-bordered" required />
+                        </div>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-transparent text-[#0677A1] hover:text-white  hover:bg-[#0677A1]">Register</button>
+                        <button disabled={disable} className="btn bg-transparent text-[#0677A1] hover:text-white  hover:bg-[#0677A1]">Register</button>
                         {
                             registerError && <p className="text-red-600">{registerError}</p>
                         }

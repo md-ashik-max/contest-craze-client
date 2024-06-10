@@ -24,6 +24,7 @@ import MyProfile from "../pages/Dashboard/UserRoute/MyProfile";
 import MyParticipatedContest from "../pages/Dashboard/UserRoute/MyParticipatedContest";
 import ContestParticipants from "../pages/Dashboard/CreatorRoute/ContestParticipants";
 import MyWinningContest from "../pages/Dashboard/UserRoute/MyWinningContest";
+import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
 
 
 export const router = createBrowserRouter([
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
         path: '/contestDetails/:id',
         element: <PrivetRoute><ContestDetails></ContestDetails></PrivetRoute>,
         loader: ({ params }) => fetch(`https://contest-craze-server.vercel.app/contests/${params.id}`)
-      }
+      },
     ]
   },
   {
@@ -64,15 +65,19 @@ export const router = createBrowserRouter([
       // user route
       {
         path: 'userProfile',
-        element: <MyProfile></MyProfile>
+        element: <PrivetRoute><MyProfile></MyProfile></PrivetRoute>
       },
       {
         path:'participate',
-        element:<MyParticipatedContest></MyParticipatedContest>
+        element:<PrivetRoute><MyParticipatedContest></MyParticipatedContest></PrivetRoute>
       },
       {
         path:'winningContest',
-        element:<MyWinningContest></MyWinningContest>
+        element:<PrivetRoute><MyWinningContest></MyWinningContest></PrivetRoute>
+      },
+      {
+        path:'leaderBoard',
+        element:<PrivetRoute><LeaderBoard></LeaderBoard></PrivetRoute>
       },
 
 
@@ -80,7 +85,7 @@ export const router = createBrowserRouter([
 
       {
         path: 'adminHome',
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: 'manageUsers',
@@ -95,7 +100,7 @@ export const router = createBrowserRouter([
 
       {
         path: 'creatorHome',
-        element: <CreatorHome></CreatorHome>
+        element: <CreatorRoute><CreatorHome></CreatorHome></CreatorRoute>
       },
 
       {

@@ -84,6 +84,45 @@ const SignIn = () => {
             })
 
     }
+
+    // const handleFacebookLogin = () => {
+    //     facebookLogin()
+    //         .then(result => {
+    //             const userInfo = {
+    //                 email: result.user?.email,
+    //                 name: result.user?.displayName
+    //             }
+    //             axiosPublic.post('/users', userInfo)
+    //                 .then(res => {
+    //                     // console.log(res.data)
+    //                     if (res.data.insertedId) {
+    //                         navigate('/')
+    //                         Swal.fire({
+    //                             title: "Created user successfully",
+    //                             showClass: {
+    //                                 popup: `animate__animated animate__fadeInUp animate__faster`
+    //                             },
+    //                             hideClass: {
+    //                                 popup: `animate__animated animate__fadeOutDown animate__faster`
+    //                             }
+    //                         });
+    //                     } else {
+    //                         navigate('/')
+    //                         Swal.fire({
+    //                             title: "Logged in user successfully",
+    //                             showClass: {
+    //                                 popup: `animate__animated animate__fadeInUp animate__faster`
+    //                             },
+    //                             hideClass: {
+    //                                 popup: `animate__animated animate__fadeOutDown animate__faster`
+    //                             }
+    //                         });
+
+    //                     }
+    //                 })
+    //         })
+
+    // }
     if (user || loading) return
 
 

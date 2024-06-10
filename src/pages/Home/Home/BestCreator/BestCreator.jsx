@@ -6,12 +6,13 @@ import useAllContest from '../../../../hooks/useAllContest';
 
 const BestCreator = () => {
     const swiperRef = useRef(null);
-    const [topCreators, setTopCreators] = useState([]);
     const [allContest] = useAllContest();
 
     const sortedCreators = useMemo(() => {
         return [...allContest].sort((a, b) => b.participants - a.participants).slice(0, 5);
     }, [allContest]);
+
+    const [topCreators, setTopCreators] = useState(sortedCreators);
 
     useEffect(() => {
         setTopCreators(sortedCreators);

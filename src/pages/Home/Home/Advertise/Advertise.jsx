@@ -25,37 +25,7 @@ const Advertise = () => {
       return res.data;
     }
   });
-  //     <div className="winner-info bg-white px-8 py-12 flex flex-col items-center">
-  //   <Swiper
-  //   effect={'cards'}
-  //   grabCursor={true}
-  //   modules={[EffectCards]}
-  //   className="mySwiper"
-  // >
-  //   {winners.map(winner => (
-  //     <SwiperSlide key={winner._id}>
-  // <div className="flex flex-col items-center border-2 p-6 rounded-xl shadow-xl">
-  //   <img
-  //     src={winner.participantPhoto}
-  //     alt=""
-  //     className="w-32 h-32 rounded-full mb-4 shadow-md"
-  //   />
-  //   <h3 className="text-xl font-bold text-center mb-2">{winner.participantName}</h3>
-  //   <p className="text-gray-600 text-center">Contest Winner</p>
-  //   <div className="winning-entry mt-4">
-  //     {/* Display the winner's creation here (image, video, text, etc.) */}
-  //   </div>
-  //   <div className="winner-quote mt-4 text-center">
-  //     <p className="text-gray-700">Winning this contest was an amazing experience!</p>
-  //   </div>
-  //   <button className="btn hover:bg-transparent hover:text-[#0677A1] border-0 font-bold bg-[#0677A1] text-white items-center gap-2">
-  //     See Portfolio
-  //   </button>
-  // </div>
-  //     </SwiperSlide>
-  //   ))}
-  // </Swiper>
-  // </div>
+ 
 
   return (
     <div className="hero min-h-screen my-28" style={{ backgroundImage: 'url(https://i.ibb.co/QCtXf2n/advertise-poster.jpg)' }}>
